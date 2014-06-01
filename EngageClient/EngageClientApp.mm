@@ -16,6 +16,8 @@ EngageClientApp::EngageClientApp(PolycodeView *view) : EventHandler() {
     CoreServices::getInstance()->getResourceManager()->addArchive("/Users/iamedu/Development/iamedu/Polycode/Examples/C++/Resources/default.pak");
     CoreServices::getInstance()->getResourceManager()->addDirResource("default", false);
     
+    core->setVideoMode(1024, 768, true, true, 1, 1);
+    
     Scene *scene = new Scene(Scene::SCENE_2D);
     scene->getActiveCamera()->setOrthoSize(640, 480);
     SceneLabel *label = new SceneLabel("Hello, Polycode!", 32);

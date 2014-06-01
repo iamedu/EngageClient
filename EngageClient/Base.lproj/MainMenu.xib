@@ -677,11 +677,17 @@
                 <rect key="frame" x="0.0" y="0.0" width="480" height="360"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <openGLView fixedFrame="YES" useAuxiliaryDepthBufferStencil="NO" allowOffline="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eu4-Ro-5le" customClass="PolycodeView">
+                    <openGLView useAuxiliaryDepthBufferStencil="NO" allowOffline="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eu4-Ro-5le" customClass="PolycodeView">
                         <rect key="frame" x="0.0" y="0.0" width="480" height="360"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     </openGLView>
                 </subviews>
+                <constraints>
+                    <constraint firstItem="eu4-Ro-5le" firstAttribute="top" secondItem="EiT-Mj-1SZ" secondAttribute="top" id="8pV-Vk-nee"/>
+                    <constraint firstAttribute="trailing" secondItem="eu4-Ro-5le" secondAttribute="trailing" id="ChV-27-dHJ"/>
+                    <constraint firstItem="eu4-Ro-5le" firstAttribute="leading" secondItem="EiT-Mj-1SZ" secondAttribute="leading" id="HZa-kT-yBw"/>
+                    <constraint firstAttribute="bottom" secondItem="eu4-Ro-5le" secondAttribute="bottom" id="noC-2i-HgW"/>
+                </constraints>
             </view>
         </window>
     </objects>
