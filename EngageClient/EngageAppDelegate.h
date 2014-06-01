@@ -7,9 +7,20 @@
 //
 
 #import <Cocoa/Cocoa.h>
+#import <PolycodeView.h>
 
-@interface EngageAppDelegate : NSObject <NSApplicationDelegate>
+#include "EngageClientApp.h"
+
+#define MACRO_NAME(f) #f
+#define MACRO_VALUE(f) MACRO_NAME(f)
+
+@interface EngageAppDelegate : NSObject <NSApplicationDelegate> {
+@private
+    EngageClientApp *app;
+    NSTimer *timer;
+}
 
 @property (assign) IBOutlet NSWindow *window;
+@property (assign) IBOutlet PolycodeView *mainView;
 
 @end

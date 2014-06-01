@@ -11,13 +11,25 @@
 		224E1B72193AD31F00D94E35 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 224E1B70193AD31F00D94E35 /* InfoPlist.strings */; };
 		224E1B74193AD31F00D94E35 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 224E1B73193AD31F00D94E35 /* main.m */; };
 		224E1B78193AD31F00D94E35 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 224E1B76193AD31F00D94E35 /* Credits.rtf */; };
-		224E1B7B193AD31F00D94E35 /* EngageAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 224E1B7A193AD31F00D94E35 /* EngageAppDelegate.m */; };
+		224E1B7B193AD31F00D94E35 /* EngageAppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 224E1B7A193AD31F00D94E35 /* EngageAppDelegate.mm */; };
 		224E1B7E193AD31F00D94E35 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 224E1B7C193AD31F00D94E35 /* MainMenu.xib */; };
 		224E1B80193AD31F00D94E35 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 224E1B7F193AD31F00D94E35 /* Images.xcassets */; };
 		224E1B87193AD31F00D94E35 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 224E1B86193AD31F00D94E35 /* XCTest.framework */; };
 		224E1B88193AD31F00D94E35 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 224E1B67193AD31F00D94E35 /* Cocoa.framework */; };
 		224E1B90193AD31F00D94E35 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 224E1B8E193AD31F00D94E35 /* InfoPlist.strings */; };
 		224E1B92193AD31F00D94E35 /* EngageClientTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 224E1B91193AD31F00D94E35 /* EngageClientTests.m */; };
+		224E1BA3193AD3BE00D94E35 /* libfreetype.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 224E1B9B193AD3BE00D94E35 /* libfreetype.a */; };
+		224E1BA4193AD3BE00D94E35 /* liblibogg.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 224E1B9C193AD3BE00D94E35 /* liblibogg.a */; };
+		224E1BA5193AD3BE00D94E35 /* liblibvorbis.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 224E1B9D193AD3BE00D94E35 /* liblibvorbis.a */; };
+		224E1BA6193AD3BE00D94E35 /* liblibvorbisfile.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 224E1B9E193AD3BE00D94E35 /* liblibvorbisfile.a */; };
+		224E1BA7193AD3BE00D94E35 /* liblua5.1.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 224E1B9F193AD3BE00D94E35 /* liblua5.1.a */; };
+		224E1BA8193AD3BE00D94E35 /* libphysfs.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 224E1BA0193AD3BE00D94E35 /* libphysfs.a */; };
+		224E1BA9193AD3BE00D94E35 /* libpng15.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 224E1BA1193AD3BE00D94E35 /* libpng15.a */; };
+		224E1BAA193AD3BE00D94E35 /* libz.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 224E1BA2193AD3BE00D94E35 /* libz.a */; };
+		224E1BAD193AD3D300D94E35 /* libPolycore_d.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 224E1BAB193AD3D300D94E35 /* libPolycore_d.a */; };
+		224E1BAE193AD3D300D94E35 /* libPolycore.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 224E1BAC193AD3D300D94E35 /* libPolycore.a */; };
+		224E1BB1193AD61000D94E35 /* EngageClientApp.mm in Sources */ = {isa = PBXBuildFile; fileRef = 224E1BAF193AD61000D94E35 /* EngageClientApp.mm */; };
+		224E1BB3193ADA6000D94E35 /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 224E1BB2193ADA6000D94E35 /* OpenAL.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,7 +54,7 @@
 		224E1B75193AD31F00D94E35 /* EngageClient-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "EngageClient-Prefix.pch"; sourceTree = "<group>"; };
 		224E1B77193AD31F00D94E35 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Credits.rtf; sourceTree = "<group>"; };
 		224E1B79193AD31F00D94E35 /* EngageAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EngageAppDelegate.h; sourceTree = "<group>"; };
-		224E1B7A193AD31F00D94E35 /* EngageAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EngageAppDelegate.m; sourceTree = "<group>"; };
+		224E1B7A193AD31F00D94E35 /* EngageAppDelegate.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = EngageAppDelegate.mm; sourceTree = "<group>"; };
 		224E1B7D193AD31F00D94E35 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		224E1B7F193AD31F00D94E35 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		224E1B85193AD31F00D94E35 /* EngageClientTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EngageClientTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -50,6 +62,19 @@
 		224E1B8D193AD31F00D94E35 /* EngageClientTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "EngageClientTests-Info.plist"; sourceTree = "<group>"; };
 		224E1B8F193AD31F00D94E35 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		224E1B91193AD31F00D94E35 /* EngageClientTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EngageClientTests.m; sourceTree = "<group>"; };
+		224E1B9B193AD3BE00D94E35 /* libfreetype.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libfreetype.a; path = ../Polycode/Release/Darwin/Framework/Core/Dependencies/lib/libfreetype.a; sourceTree = "<group>"; };
+		224E1B9C193AD3BE00D94E35 /* liblibogg.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = liblibogg.a; path = ../Polycode/Release/Darwin/Framework/Core/Dependencies/lib/liblibogg.a; sourceTree = "<group>"; };
+		224E1B9D193AD3BE00D94E35 /* liblibvorbis.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = liblibvorbis.a; path = ../Polycode/Release/Darwin/Framework/Core/Dependencies/lib/liblibvorbis.a; sourceTree = "<group>"; };
+		224E1B9E193AD3BE00D94E35 /* liblibvorbisfile.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = liblibvorbisfile.a; path = ../Polycode/Release/Darwin/Framework/Core/Dependencies/lib/liblibvorbisfile.a; sourceTree = "<group>"; };
+		224E1B9F193AD3BE00D94E35 /* liblua5.1.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = liblua5.1.a; path = ../Polycode/Release/Darwin/Framework/Core/Dependencies/lib/liblua5.1.a; sourceTree = "<group>"; };
+		224E1BA0193AD3BE00D94E35 /* libphysfs.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libphysfs.a; path = ../Polycode/Release/Darwin/Framework/Core/Dependencies/lib/libphysfs.a; sourceTree = "<group>"; };
+		224E1BA1193AD3BE00D94E35 /* libpng15.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libpng15.a; path = ../Polycode/Release/Darwin/Framework/Core/Dependencies/lib/libpng15.a; sourceTree = "<group>"; };
+		224E1BA2193AD3BE00D94E35 /* libz.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libz.a; path = ../Polycode/Release/Darwin/Framework/Core/Dependencies/lib/libz.a; sourceTree = "<group>"; };
+		224E1BAB193AD3D300D94E35 /* libPolycore_d.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libPolycore_d.a; path = ../Polycode/Release/Darwin/Framework/Core/lib/libPolycore_d.a; sourceTree = "<group>"; };
+		224E1BAC193AD3D300D94E35 /* libPolycore.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libPolycore.a; path = ../Polycode/Release/Darwin/Framework/Core/lib/libPolycore.a; sourceTree = "<group>"; };
+		224E1BAF193AD61000D94E35 /* EngageClientApp.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = EngageClientApp.mm; sourceTree = "<group>"; };
+		224E1BB0193AD61000D94E35 /* EngageClientApp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EngageClientApp.h; sourceTree = "<group>"; };
+		224E1BB2193ADA6000D94E35 /* OpenAL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenAL.framework; path = System/Library/Frameworks/OpenAL.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,6 +82,17 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				224E1BB3193ADA6000D94E35 /* OpenAL.framework in Frameworks */,
+				224E1BAD193AD3D300D94E35 /* libPolycore_d.a in Frameworks */,
+				224E1BAE193AD3D300D94E35 /* libPolycore.a in Frameworks */,
+				224E1BA3193AD3BE00D94E35 /* libfreetype.a in Frameworks */,
+				224E1BA4193AD3BE00D94E35 /* liblibogg.a in Frameworks */,
+				224E1BA5193AD3BE00D94E35 /* liblibvorbis.a in Frameworks */,
+				224E1BA6193AD3BE00D94E35 /* liblibvorbisfile.a in Frameworks */,
+				224E1BA7193AD3BE00D94E35 /* liblua5.1.a in Frameworks */,
+				224E1BA8193AD3BE00D94E35 /* libphysfs.a in Frameworks */,
+				224E1BA9193AD3BE00D94E35 /* libpng15.a in Frameworks */,
+				224E1BAA193AD3BE00D94E35 /* libz.a in Frameworks */,
 				224E1B68193AD31F00D94E35 /* Cocoa.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -95,6 +131,17 @@
 		224E1B66193AD31F00D94E35 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				224E1BB2193ADA6000D94E35 /* OpenAL.framework */,
+				224E1BAB193AD3D300D94E35 /* libPolycore_d.a */,
+				224E1BAC193AD3D300D94E35 /* libPolycore.a */,
+				224E1B9B193AD3BE00D94E35 /* libfreetype.a */,
+				224E1B9C193AD3BE00D94E35 /* liblibogg.a */,
+				224E1B9D193AD3BE00D94E35 /* liblibvorbis.a */,
+				224E1B9E193AD3BE00D94E35 /* liblibvorbisfile.a */,
+				224E1B9F193AD3BE00D94E35 /* liblua5.1.a */,
+				224E1BA0193AD3BE00D94E35 /* libphysfs.a */,
+				224E1BA1193AD3BE00D94E35 /* libpng15.a */,
+				224E1BA2193AD3BE00D94E35 /* libz.a */,
 				224E1B67193AD31F00D94E35 /* Cocoa.framework */,
 				224E1B86193AD31F00D94E35 /* XCTest.framework */,
 				224E1B69193AD31F00D94E35 /* Other Frameworks */,
@@ -116,10 +163,12 @@
 			isa = PBXGroup;
 			children = (
 				224E1B79193AD31F00D94E35 /* EngageAppDelegate.h */,
-				224E1B7A193AD31F00D94E35 /* EngageAppDelegate.m */,
+				224E1B7A193AD31F00D94E35 /* EngageAppDelegate.mm */,
 				224E1B7C193AD31F00D94E35 /* MainMenu.xib */,
 				224E1B7F193AD31F00D94E35 /* Images.xcassets */,
 				224E1B6E193AD31F00D94E35 /* Supporting Files */,
+				224E1BAF193AD61000D94E35 /* EngageClientApp.mm */,
+				224E1BB0193AD61000D94E35 /* EngageClientApp.h */,
 			);
 			path = EngageClient;
 			sourceTree = "<group>";
@@ -254,7 +303,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				224E1B74193AD31F00D94E35 /* main.m in Sources */,
-				224E1B7B193AD31F00D94E35 /* EngageAppDelegate.m in Sources */,
+				224E1B7B193AD31F00D94E35 /* EngageAppDelegate.mm in Sources */,
+				224E1BB1193AD61000D94E35 /* EngageClientApp.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -389,8 +439,22 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "EngageClient/EngageClient-Prefix.pch";
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					/Users/iamedu/Development/iamedu/Polycode/Release/Darwin/Framework/Core/PolycodeView,
+					/Users/iamedu/Development/iamedu/Polycode/Release/Darwin/Framework/Core/include,
+					/Users/iamedu/Development/iamedu/Polycode/Release/Darwin/Framework/Core/Dependencies/include,
+				);
 				INFOPLIST_FILE = "EngageClient/EngageClient-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					/Users/iamedu/Development/iamedu/Polycode/Release/Darwin/Framework/Core/Dependencies/lib,
+					/Users/iamedu/Development/iamedu/Polycode/Release/Darwin/Framework/Core/lib,
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -402,8 +466,22 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "EngageClient/EngageClient-Prefix.pch";
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					/Users/iamedu/Development/iamedu/Polycode/Release/Darwin/Framework/Core/PolycodeView,
+					/Users/iamedu/Development/iamedu/Polycode/Release/Darwin/Framework/Core/include,
+					/Users/iamedu/Development/iamedu/Polycode/Release/Darwin/Framework/Core/Dependencies/include,
+				);
 				INFOPLIST_FILE = "EngageClient/EngageClient-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					/Users/iamedu/Development/iamedu/Polycode/Release/Darwin/Framework/Core/Dependencies/lib,
+					/Users/iamedu/Development/iamedu/Polycode/Release/Darwin/Framework/Core/lib,
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
@@ -467,6 +545,7 @@
 				224E1B97193AD31F00D94E35 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		224E1B98193AD31F00D94E35 /* Build configuration list for PBXNativeTarget "EngageClientTests" */ = {
 			isa = XCConfigurationList;
@@ -475,6 +554,7 @@
 				224E1B9A193AD31F00D94E35 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
