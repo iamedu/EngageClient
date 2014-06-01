@@ -30,6 +30,7 @@
 		224E1BAE193AD3D300D94E35 /* libPolycore.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 224E1BAC193AD3D300D94E35 /* libPolycore.a */; };
 		224E1BB1193AD61000D94E35 /* EngageClientApp.mm in Sources */ = {isa = PBXBuildFile; fileRef = 224E1BAF193AD61000D94E35 /* EngageClientApp.mm */; };
 		224E1BB3193ADA6000D94E35 /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 224E1BB2193ADA6000D94E35 /* OpenAL.framework */; };
+		224E1BB8193ADBEE00D94E35 /* default.pak in Resources */ = {isa = PBXBuildFile; fileRef = 224E1BB7193ADBEE00D94E35 /* default.pak */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -75,6 +76,7 @@
 		224E1BAF193AD61000D94E35 /* EngageClientApp.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = EngageClientApp.mm; sourceTree = "<group>"; };
 		224E1BB0193AD61000D94E35 /* EngageClientApp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EngageClientApp.h; sourceTree = "<group>"; };
 		224E1BB2193ADA6000D94E35 /* OpenAL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenAL.framework; path = System/Library/Frameworks/OpenAL.framework; sourceTree = SDKROOT; };
+		224E1BB7193ADBEE00D94E35 /* default.pak */ = {isa = PBXFileReference; lastKnownFileType = file; name = default.pak; path = EngageClient/Resources/default.pak; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -112,6 +114,7 @@
 		224E1B5B193AD31F00D94E35 = {
 			isa = PBXGroup;
 			children = (
+				224E1BB6193ADBA300D94E35 /* Resources */,
 				224E1B6D193AD31F00D94E35 /* EngageClient */,
 				224E1B8B193AD31F00D94E35 /* EngageClientTests */,
 				224E1B66193AD31F00D94E35 /* Frameworks */,
@@ -203,6 +206,14 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		224E1BB6193ADBA300D94E35 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				224E1BB7193ADBEE00D94E35 /* default.pak */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -281,6 +292,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				224E1B72193AD31F00D94E35 /* InfoPlist.strings in Resources */,
+				224E1BB8193ADBEE00D94E35 /* default.pak in Resources */,
 				224E1B80193AD31F00D94E35 /* Images.xcassets in Resources */,
 				224E1B78193AD31F00D94E35 /* Credits.rtf in Resources */,
 				224E1B7E193AD31F00D94E35 /* MainMenu.xib in Resources */,

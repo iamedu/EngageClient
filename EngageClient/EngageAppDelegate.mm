@@ -15,6 +15,7 @@
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
+    [PolycodeView class];
     app = new EngageClientApp(mainView);
 	timer = [NSTimer timerWithTimeInterval:(1.0f/60.0f)
                                     target:self

@@ -13,7 +13,7 @@
 EngageClientApp::EngageClientApp(PolycodeView *view) : EventHandler() {
     core = new POLYCODE_CORE(view, 640,480,false,false,0,0,90, 1, true);
     
-    CoreServices::getInstance()->getResourceManager()->addArchive("Resources/default.pak");
+    CoreServices::getInstance()->getResourceManager()->addArchive("/Users/iamedu/Development/iamedu/Polycode/Examples/C++/Resources/default.pak");
     CoreServices::getInstance()->getResourceManager()->addDirResource("default", false);
     
     Scene *scene = new Scene(Scene::SCENE_2D);
