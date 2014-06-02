@@ -11,16 +11,35 @@
 
 
 EngageClientApp::EngageClientApp(PolycodeView *view) : EventHandler() {
-    core = new POLYCODE_CORE(view, 640,480,false,false,0,0,90, 1, true);
+    int index = 0;
+    NSArray *screenArray = [NSScreen screens];
+    NSScreen *screen = [screenArray objectAtIndex: index];
+    
+    NSRect rect = [screen frame];
+    
+    int width = rect.size.width;
+    int height = rect.size.height;
+    
+    
+    core = new POLYCODE_CORE(view,
+                             width,
+                             height,
+                             true,
+                             true,
+                             0,
+                             0,
+                             90,
+                             index,
+                             true);
     
     CoreServices::getInstance()->getResourceManager()->addArchive("/Users/iamedu/Development/iamedu/Polycode/Examples/C++/Resources/default.pak");
     CoreServices::getInstance()->getResourceManager()->addDirResource("default", false);
     
-    core->setVideoMode(1024, 768, true, true, 1, 1);
+    //core->setVideoMode(1024, 768, true, true, 1, 1);
     
     Scene *scene = new Scene(Scene::SCENE_2D);
-    scene->getActiveCamera()->setOrthoSize(640, 480);
-    SceneLabel *label = new SceneLabel("Hello, Polycode!", 32);
+    scene->getActiveCamera()->setOrthoSize(width, height);
+    SceneLabel *label = new SceneLabel("Hello, Polycode!", 60);
     scene->addChild(label);
 }
 
