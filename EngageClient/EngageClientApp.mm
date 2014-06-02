@@ -9,8 +9,8 @@
 
 #include "EngageClientApp.h"
 
-EngageClientApp::EngageClientApp(PolycodeView *view) : EventHandler() {
-    int index = 0;
+EngageClientApp::EngageClientApp(PolycodeView *view, int screenIndex) : EventHandler() {
+    int index = screenIndex;
     NSArray *screenArray = [NSScreen screens];
     NSScreen *screen = [screenArray objectAtIndex: index];
     

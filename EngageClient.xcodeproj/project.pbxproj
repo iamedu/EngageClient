@@ -36,6 +36,7 @@
 		229B9DCD193C4F7300B147C3 /* logo_engagewall.png in Resources */ = {isa = PBXBuildFile; fileRef = 229B9DCC193C4F7300B147C3 /* logo_engagewall.png */; };
 		22DC7EDD193C78040051274F /* LoginController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 22DC7EDB193C78040051274F /* LoginController.mm */; };
 		22DC7EDE193C78040051274F /* LoginController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 22DC7EDC193C78040051274F /* LoginController.xib */; };
+		22DC7EE5193C8CD90051274F /* NSScreen+DisplayInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 22DC7EE4193C8CD90051274F /* NSScreen+DisplayInfo.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -89,6 +90,8 @@
 		22DC7EDA193C78040051274F /* LoginController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginController.h; sourceTree = "<group>"; };
 		22DC7EDB193C78040051274F /* LoginController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = LoginController.mm; sourceTree = "<group>"; };
 		22DC7EDC193C78040051274F /* LoginController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginController.xib; sourceTree = "<group>"; };
+		22DC7EE3193C8CD90051274F /* NSScreen+DisplayInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSScreen+DisplayInfo.h"; path = "EngageClient/NSScreen+DisplayInfo.h"; sourceTree = "<group>"; };
+		22DC7EE4193C8CD90051274F /* NSScreen+DisplayInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSScreen+DisplayInfo.m"; path = "EngageClient/NSScreen+DisplayInfo.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -127,6 +130,8 @@
 		224E1B5B193AD31F00D94E35 = {
 			isa = PBXGroup;
 			children = (
+				22DC7EE3193C8CD90051274F /* NSScreen+DisplayInfo.h */,
+				22DC7EE4193C8CD90051274F /* NSScreen+DisplayInfo.m */,
 				22DC7EDA193C78040051274F /* LoginController.h */,
 				22DC7EDB193C78040051274F /* LoginController.mm */,
 				22DC7EDC193C78040051274F /* LoginController.xib */,
@@ -345,6 +350,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				22DC7EDD193C78040051274F /* LoginController.mm in Sources */,
+				22DC7EE5193C8CD90051274F /* NSScreen+DisplayInfo.m in Sources */,
 				224E1B74193AD31F00D94E35 /* main.m in Sources */,
 				224E1B7B193AD31F00D94E35 /* EngageAppDelegate.mm in Sources */,
 				22512AC0193C5652009BA32B /* ColorAnimation.m in Sources */,

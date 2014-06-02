@@ -17,7 +17,7 @@ using namespace Polycode;
 
 class EngageClientApp : public EventHandler {
 public:
-    EngageClientApp(PolycodeView *view);
+    EngageClientApp(PolycodeView *view, int screenIndex);
     ~EngageClientApp();
     
     void handleEvent(Event *e);

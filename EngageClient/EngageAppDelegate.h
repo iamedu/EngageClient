@@ -25,6 +25,6 @@
 @property (assign) IBOutlet NSWindow *window;
 @property (assign) IBOutlet PolycodeView *mainView;
 
--(void)startVideo;
+-(void)startVideo:(int)screenIndex;
 
 @end

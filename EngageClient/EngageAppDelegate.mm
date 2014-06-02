@@ -20,9 +20,9 @@
     [login showWindow:self];
 }
 
--(void)startVideo
+-(void)startVideo:(int)screenIndex
 {
-    app = new EngageClientApp(mainView);
+    app = new EngageClientApp(mainView, screenIndex);
 	timer = [NSTimer timerWithTimeInterval:(1.0f/60.0f)
                                     target:self
                                   selector:@selector(animationTimer:)

@@ -10,6 +10,10 @@
 
 @interface LoginController : NSWindowController
 
+@property (strong) IBOutlet NSArrayController *displayArrayController;
+@property (weak) IBOutlet NSTableView *displayTable;
+
 -(IBAction)startApp:(id)sender;
+
 
 @end
