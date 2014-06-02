@@ -9,7 +9,6 @@
 
 #include "EngageClientApp.h"
 
-
 EngageClientApp::EngageClientApp(PolycodeView *view) : EventHandler() {
     int index = 0;
     NSArray *screenArray = [NSScreen screens];
@@ -32,18 +31,30 @@ EngageClientApp::EngageClientApp(PolycodeView *view) : EventHandler() {
                              index,
                              true);
     
-    NSString* bundlePath = [[NSBundle mainBundle] bundlePath];
-    NSString* archive = [bundlePath stringByAppendingString:@"/Contents/Resources/default.pak"];
     
-    CoreServices::getInstance()->getResourceManager()->addArchive([archive cStringUsingEncoding:NSASCIIStringEncoding]);
+    CoreServices::getInstance()->getResourceManager()->addArchive("../Resources/default.pak");
     CoreServices::getInstance()->getResourceManager()->addDirResource("default", false);
     
-    //core->setVideoMode(1024, 768, true, true, 1, 1);
+    animationTimer = new Timer(true, 10);
+    animationTimer->addEventListener(this, Timer::EVENT_TRIGGER);
     
-    Scene *scene = new Scene(Scene::SCENE_2D);
-    scene->getActiveCamera()->setOrthoSize(width, height);
-    SceneLabel *label = new SceneLabel("Hello, Polycode!", 60);
-    scene->addChild(label);
+    scene = new Scene(Scene::SCENE_2D);
+    color = new Color(0x34495eff);
+    scene->clearColor = color;
+    scene->useClearColor = true;
+    scene->getActiveCamera()->setOrthoSize(1024, 768);
+    image = new SceneImage("../Resources/logo_engagewall.png");
+    scene->addChild(image);
+    
+    ScenePrimitive *planet = new ScenePrimitive(ScenePrimitive::TYPE_VPLANE, 1200.0, 400.0);
+    planet->setPosition(0,0);
+    planet->setColor(0, 0, 0, 0.4);
+    planet->colorAffectsChildren = false;
+    scene->addChild(planet);
+}
+
+void EngageClientApp::handleEvent(Event *e) {
+    
 }
 
 EngageClientApp::~EngageClientApp() {

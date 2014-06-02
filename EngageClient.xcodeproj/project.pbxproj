@@ -31,6 +31,9 @@
 		224E1BB1193AD61000D94E35 /* EngageClientApp.mm in Sources */ = {isa = PBXBuildFile; fileRef = 224E1BAF193AD61000D94E35 /* EngageClientApp.mm */; };
 		224E1BB3193ADA6000D94E35 /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 224E1BB2193ADA6000D94E35 /* OpenAL.framework */; };
 		224E1BB8193ADBEE00D94E35 /* default.pak in Resources */ = {isa = PBXBuildFile; fileRef = 224E1BB7193ADBEE00D94E35 /* default.pak */; };
+		22512AC0193C5652009BA32B /* ColorAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 22512ABF193C5652009BA32B /* ColorAnimation.m */; };
+		22512AC3193C5882009BA32B /* libPolycodeUI.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 22512AC2193C5882009BA32B /* libPolycodeUI.a */; };
+		229B9DCD193C4F7300B147C3 /* logo_engagewall.png in Resources */ = {isa = PBXBuildFile; fileRef = 229B9DCC193C4F7300B147C3 /* logo_engagewall.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -77,6 +80,10 @@
 		224E1BB0193AD61000D94E35 /* EngageClientApp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EngageClientApp.h; sourceTree = "<group>"; };
 		224E1BB2193ADA6000D94E35 /* OpenAL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenAL.framework; path = System/Library/Frameworks/OpenAL.framework; sourceTree = SDKROOT; };
 		224E1BB7193ADBEE00D94E35 /* default.pak */ = {isa = PBXFileReference; lastKnownFileType = file; name = default.pak; path = EngageClient/Resources/default.pak; sourceTree = "<group>"; };
+		22512ABE193C5652009BA32B /* ColorAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColorAnimation.h; sourceTree = "<group>"; };
+		22512ABF193C5652009BA32B /* ColorAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ColorAnimation.m; sourceTree = "<group>"; };
+		22512AC2193C5882009BA32B /* libPolycodeUI.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libPolycodeUI.a; path = ../Polycode/Release/Darwin/Framework/Modules/lib/libPolycodeUI.a; sourceTree = "<group>"; };
+		229B9DCC193C4F7300B147C3 /* logo_engagewall.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = logo_engagewall.png; path = EngageClient/Resources/logo_engagewall.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,6 +91,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				22512AC3193C5882009BA32B /* libPolycodeUI.a in Frameworks */,
 				224E1BB3193ADA6000D94E35 /* OpenAL.framework in Frameworks */,
 				224E1BAD193AD3D300D94E35 /* libPolycore_d.a in Frameworks */,
 				224E1BAE193AD3D300D94E35 /* libPolycore.a in Frameworks */,
@@ -114,6 +122,7 @@
 		224E1B5B193AD31F00D94E35 = {
 			isa = PBXGroup;
 			children = (
+				22512AC1193C5658009BA32B /* Animations */,
 				224E1BB6193ADBA300D94E35 /* Resources */,
 				224E1B6D193AD31F00D94E35 /* EngageClient */,
 				224E1B8B193AD31F00D94E35 /* EngageClientTests */,
@@ -134,6 +143,7 @@
 		224E1B66193AD31F00D94E35 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				22512AC2193C5882009BA32B /* libPolycodeUI.a */,
 				224E1BB2193ADA6000D94E35 /* OpenAL.framework */,
 				224E1BAB193AD3D300D94E35 /* libPolycore_d.a */,
 				224E1BAC193AD3D300D94E35 /* libPolycore.a */,
@@ -209,9 +219,19 @@
 		224E1BB6193ADBA300D94E35 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				229B9DCC193C4F7300B147C3 /* logo_engagewall.png */,
 				224E1BB7193ADBEE00D94E35 /* default.pak */,
 			);
 			name = Resources;
+			sourceTree = "<group>";
+		};
+		22512AC1193C5658009BA32B /* Animations */ = {
+			isa = PBXGroup;
+			children = (
+				22512ABF193C5652009BA32B /* ColorAnimation.m */,
+				22512ABE193C5652009BA32B /* ColorAnimation.h */,
+			);
+			name = Animations;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -296,6 +316,7 @@
 				224E1B80193AD31F00D94E35 /* Images.xcassets in Resources */,
 				224E1B78193AD31F00D94E35 /* Credits.rtf in Resources */,
 				224E1B7E193AD31F00D94E35 /* MainMenu.xib in Resources */,
+				229B9DCD193C4F7300B147C3 /* logo_engagewall.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -316,6 +337,7 @@
 			files = (
 				224E1B74193AD31F00D94E35 /* main.m in Sources */,
 				224E1B7B193AD31F00D94E35 /* EngageAppDelegate.mm in Sources */,
+				22512AC0193C5652009BA32B /* ColorAnimation.m in Sources */,
 				224E1BB1193AD61000D94E35 /* EngageClientApp.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -457,12 +479,14 @@
 					/Users/iamedu/Development/iamedu/Polycode/Release/Darwin/Framework/Core/PolycodeView,
 					/Users/iamedu/Development/iamedu/Polycode/Release/Darwin/Framework/Core/include,
 					/Users/iamedu/Development/iamedu/Polycode/Release/Darwin/Framework/Core/Dependencies/include,
+					/Users/iamedu/Development/iamedu/Polycode/Modules/Contents/UI/Include,
 				);
 				INFOPLIST_FILE = "EngageClient/EngageClient-Info.plist";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					/Users/iamedu/Development/iamedu/Polycode/Release/Darwin/Framework/Core/Dependencies/lib,
 					/Users/iamedu/Development/iamedu/Polycode/Release/Darwin/Framework/Core/lib,
+					/Users/iamedu/Development/iamedu/Polycode/Release/Darwin/Framework/Modules/lib,
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -484,12 +508,14 @@
 					/Users/iamedu/Development/iamedu/Polycode/Release/Darwin/Framework/Core/PolycodeView,
 					/Users/iamedu/Development/iamedu/Polycode/Release/Darwin/Framework/Core/include,
 					/Users/iamedu/Development/iamedu/Polycode/Release/Darwin/Framework/Core/Dependencies/include,
+					/Users/iamedu/Development/iamedu/Polycode/Modules/Contents/UI/Include,
 				);
 				INFOPLIST_FILE = "EngageClient/EngageClient-Info.plist";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					/Users/iamedu/Development/iamedu/Polycode/Release/Darwin/Framework/Core/Dependencies/lib,
 					/Users/iamedu/Development/iamedu/Polycode/Release/Darwin/Framework/Core/lib,
+					/Users/iamedu/Development/iamedu/Polycode/Release/Darwin/Framework/Modules/lib,
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				PRODUCT_NAME = "$(TARGET_NAME)";

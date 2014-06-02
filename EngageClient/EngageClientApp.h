@@ -11,6 +11,7 @@
 
 #include <Polycode.h>
 #include <PolycodeView.h>
+#include <PolycodeUI.h>
 
 using namespace Polycode;
 
@@ -18,10 +19,19 @@ class EngageClientApp : public EventHandler {
 public:
     EngageClientApp(PolycodeView *view);
     ~EngageClientApp();
+    
+    void handleEvent(Event *e);
+    
     bool Update();
     
 private:
+    UIButton *code;
+    
     Core *core;
+    Scene *scene;
+    Color *color;
+    SceneImage *image;
+    Timer *animationTimer;
 };
 
 
