@@ -34,6 +34,8 @@
 		22512AC0193C5652009BA32B /* ColorAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 22512ABF193C5652009BA32B /* ColorAnimation.m */; };
 		22512AC3193C5882009BA32B /* libPolycodeUI.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 22512AC2193C5882009BA32B /* libPolycodeUI.a */; };
 		229B9DCD193C4F7300B147C3 /* logo_engagewall.png in Resources */ = {isa = PBXBuildFile; fileRef = 229B9DCC193C4F7300B147C3 /* logo_engagewall.png */; };
+		22DC7EDD193C78040051274F /* LoginController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 22DC7EDB193C78040051274F /* LoginController.mm */; };
+		22DC7EDE193C78040051274F /* LoginController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 22DC7EDC193C78040051274F /* LoginController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -84,6 +86,9 @@
 		22512ABF193C5652009BA32B /* ColorAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ColorAnimation.m; sourceTree = "<group>"; };
 		22512AC2193C5882009BA32B /* libPolycodeUI.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libPolycodeUI.a; path = ../Polycode/Release/Darwin/Framework/Modules/lib/libPolycodeUI.a; sourceTree = "<group>"; };
 		229B9DCC193C4F7300B147C3 /* logo_engagewall.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = logo_engagewall.png; path = EngageClient/Resources/logo_engagewall.png; sourceTree = "<group>"; };
+		22DC7EDA193C78040051274F /* LoginController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginController.h; sourceTree = "<group>"; };
+		22DC7EDB193C78040051274F /* LoginController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = LoginController.mm; sourceTree = "<group>"; };
+		22DC7EDC193C78040051274F /* LoginController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -122,6 +127,9 @@
 		224E1B5B193AD31F00D94E35 = {
 			isa = PBXGroup;
 			children = (
+				22DC7EDA193C78040051274F /* LoginController.h */,
+				22DC7EDB193C78040051274F /* LoginController.mm */,
+				22DC7EDC193C78040051274F /* LoginController.xib */,
 				22512AC1193C5658009BA32B /* Animations */,
 				224E1BB6193ADBA300D94E35 /* Resources */,
 				224E1B6D193AD31F00D94E35 /* EngageClient */,
@@ -314,6 +322,7 @@
 				224E1B72193AD31F00D94E35 /* InfoPlist.strings in Resources */,
 				224E1BB8193ADBEE00D94E35 /* default.pak in Resources */,
 				224E1B80193AD31F00D94E35 /* Images.xcassets in Resources */,
+				22DC7EDE193C78040051274F /* LoginController.xib in Resources */,
 				224E1B78193AD31F00D94E35 /* Credits.rtf in Resources */,
 				224E1B7E193AD31F00D94E35 /* MainMenu.xib in Resources */,
 				229B9DCD193C4F7300B147C3 /* logo_engagewall.png in Resources */,
@@ -335,6 +344,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				22DC7EDD193C78040051274F /* LoginController.mm in Sources */,
 				224E1B74193AD31F00D94E35 /* main.m in Sources */,
 				224E1B7B193AD31F00D94E35 /* EngageAppDelegate.mm in Sources */,
 				22512AC0193C5652009BA32B /* ColorAnimation.m in Sources */,

@@ -8,6 +8,7 @@
 
 #import <Cocoa/Cocoa.h>
 #import <PolycodeView.h>
+#import "LoginController.h"
 
 #include "EngageClientApp.h"
 
@@ -16,11 +17,14 @@
 
 @interface EngageAppDelegate : NSObject <NSApplicationDelegate> {
 @private
+    LoginController *login;
     EngageClientApp *app;
     NSTimer *timer;
 }
 
 @property (assign) IBOutlet NSWindow *window;
 @property (assign) IBOutlet PolycodeView *mainView;
+
+-(void)startVideo;
 
 @end
