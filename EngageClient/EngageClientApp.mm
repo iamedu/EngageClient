@@ -32,7 +32,10 @@ EngageClientApp::EngageClientApp(PolycodeView *view) : EventHandler() {
                              index,
                              true);
     
-    CoreServices::getInstance()->getResourceManager()->addArchive("/Users/iamedu/Development/iamedu/Polycode/Examples/C++/Resources/default.pak");
+    NSString* bundlePath = [[NSBundle mainBundle] bundlePath];
+    NSString* archive = [bundlePath stringByAppendingString:@"/Contents/Resources/default.pak"];
+    
+    CoreServices::getInstance()->getResourceManager()->addArchive([archive cStringUsingEncoding:NSASCIIStringEncoding]);
     CoreServices::getInstance()->getResourceManager()->addDirResource("default", false);
     
     //core->setVideoMode(1024, 768, true, true, 1, 1);
