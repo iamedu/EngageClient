@@ -11,7 +11,6 @@
 
 #include <Polycode.h>
 #include <PolycodeView.h>
-#include <PolycodeUI.h>
 
 using namespace Polycode;
 
@@ -20,6 +19,7 @@ public:
     EngageClientApp(PolycodeView *view, int screenIndex);
     ~EngageClientApp();
     
+    void topbar(Scene* scene, float width, float height);
     void footer(Scene* scene, float width, float height);
     
     void handleEvent(Event *e);
@@ -27,7 +27,6 @@ public:
     bool Update();
     
 private:
-    UIButton *code;
     
     Core *core;
     Scene *scene;
