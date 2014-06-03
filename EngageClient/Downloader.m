@@ -22,6 +22,7 @@
 
 - (void)startDownloadingURL:sender
 {
+    NSLog(@"Starting download %@", self.downloadUrl);
     // Create the request.
     NSURLRequest *theRequest = [NSURLRequest requestWithURL:[NSURL URLWithString:self.downloadUrl]
                                                 cachePolicy:NSURLRequestUseProtocolCachePolicy

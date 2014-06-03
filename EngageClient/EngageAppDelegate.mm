@@ -56,13 +56,13 @@
 	return YES;
 }
 
-- (void)downloadDefinitions:(NSTimer *)t
+- (void)testing:(NSTimer *)t
 {
     NSThread *th = [[NSThread alloc] initWithTarget:self selector:@selector(doDownloadDefinitions:) object:t];
     [th start];
 }
 
-- (void)doDownloadDefinitions:(NSTimer *)timer
+- (void)downloadDefinitions:(NSTimer *)timer
 {
     NSArray *resources = [NSArray arrayWithObjects:@"http://uxtweet.herokuapp.com/api/v1/twitter/list-approved-tweets",
                           @"http://uxtweet.herokuapp.com/api/v1/twitter/list-not-approved-ids",
@@ -81,13 +81,19 @@
                                [@"~/.engage/resources/list-approved-instagrams.json" stringByExpandingTildeInPath]];
     
     NSError *jsonParsingError;
-    tweets = [NSJSONSerialization JSONObjectWithData:tweetString
-                                             options:0 error: &jsonParsingError];
     
-    instagrams = [NSJSONSerialization JSONObjectWithData:instagramString
-                                                 options:0 error: &jsonParsingError];
     
     sleep(5);
+    if(tweetString) {
+        tweets = [NSJSONSerialization JSONObjectWithData:tweetString
+                                                 options:0 error: &jsonParsingError];
+        
+    }
+    if(instagrams) {
+        instagrams = [NSJSONSerialization JSONObjectWithData:instagramString
+                                                     options:0 error: &jsonParsingError];
+    }
+
     [self downloadResources];
 }
 
@@ -125,8 +131,6 @@
         }
     }
     
-    
-	NSLog(@"Started downloads");
 }
 
 - (void)animationTimer:(NSTimer *)timer
