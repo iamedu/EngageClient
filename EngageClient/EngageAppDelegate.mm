@@ -131,7 +131,11 @@
 
 - (void)animationTimer:(NSTimer *)timer
 {
-    if(tweets) {
+    NSUInteger randomNetwork = arc4random() % 2;
+    if(instagrams && randomNetwork == 1) {
+        NSUInteger randomIndex = arc4random() % [instagrams count];
+        app->updateScene(INSTAGRAM, [instagrams objectAtIndex:randomIndex]);
+    } else if(tweets && randomNetwork == 0) {
         NSUInteger randomIndex = arc4random() % [tweets count];
         app->updateScene(TWITTER, [tweets objectAtIndex:randomIndex]);
     }

@@ -18,6 +18,8 @@
 using namespace Polycode;
 
 #define TWITTER 0
+#define INSTAGRAM 1
+
 
 class EngageClientApp : public EventHandler {
 public:
@@ -26,7 +28,7 @@ public:
     
     void clean(Scene* scene);
     void twitter(Scene *scene, float width, float height, NSDictionary *data);
-    void instagram(Scene *scene, float width, float height);
+    void instagram(Scene *scene, float width, float height, NSDictionary *data);
     void topbar(Scene* scene, float width, float height);
     void footer(Scene* scene, float width, float height);
         
@@ -37,8 +39,10 @@ public:
     
 private:
     SceneImage *user;
+    SceneImage *biggerBox;
     
     //Twitter
+    SceneImage *smallerBox;
     SceneImage *vectorsImage;
     SceneImage *twitterPicture;
     SceneImage *twitterBackground;

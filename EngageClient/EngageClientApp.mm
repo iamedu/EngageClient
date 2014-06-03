@@ -63,10 +63,10 @@ void EngageClientApp::twitter(Scene* scene, float width, float height, NSDiction
     twitterBackground->Translate(0, 120);
     scene->addChild(twitterBackground);
     
-    user = new SceneImage("../Resources/smaller-box.png");
-    user->Scale(0.4, 0.4);
-    user->Translate(width / 4, -90);
-    scene->addChild(user);
+    smallerBox = new SceneImage("../Resources/smaller-box.png");
+    smallerBox->Scale(0.4, 0.4);
+    smallerBox->Translate(width / 4, -90);
+    scene->addChild(smallerBox);
     
     NSString *pictureUrl = [data objectForKey:@"picture_url"];
     
@@ -93,7 +93,7 @@ void EngageClientApp::twitter(Scene* scene, float width, float height, NSDiction
     
     NSString *slugString = [data objectForKey:@"slug"];
     const char *slug = [[@"@" stringByAppendingString:slugString] UTF8String];
-    SceneLabel *slugLabel = new SceneLabel(slug, 32);
+    SceneLabel *slugLabel = new SceneLabel(slug, 20);
     slugLabel->setColor(0, 0, 0, 1);
     slugLabel->Translate(width / 4 + 40, -90);
     scene->addChild(slugLabel);
@@ -119,7 +119,7 @@ void EngageClientApp::drawStrings(Scene* scene, NSString *data, float x, float y
     textReferences.clear();
     
     
-    
+    data = [data stringByReplacingOccurrencesOfString:@"\n" withString:@" "];
     NSArray *array = [data componentsSeparatedByString:@" "];
     NSArray *statuses = [[NSArray alloc] init];
     NSString *current = @"";
@@ -158,10 +158,15 @@ void EngageClientApp::drawStrings(Scene* scene, NSString *data, float x, float y
 }
 
 void EngageClientApp::clean(Scene* scene) {
-    
     for (unsigned i=0; i<textReferences.size(); i++) {
         SceneLabel *status = textReferences.at(i);
         scene->removeEntity(status);
+    }
+    if(biggerBox) {
+        scene->removeEntity(biggerBox);
+    }
+    if(smallerBox) {
+        scene->removeEntity(smallerBox);
     }
     if(vectorsImage) {
         scene->removeEntity(vectorsImage);
@@ -178,7 +183,56 @@ void EngageClientApp::clean(Scene* scene) {
 }
 
 
-void EngageClientApp::instagram(Scene* scene, float width, float height) {
+void EngageClientApp::instagram(Scene* scene, float width, float height, NSDictionary* data) {
+    biggerBox = new SceneImage("../Resources/bigger-box.png");
+    biggerBox->Scale(0.45, 0.45);
+    biggerBox->Translate(0, 50);
+    scene->addChild(biggerBox);
+    
+    NSString *pictureUrl = [data objectForKey:@"standard_resolution"];
+    
+    
+    NSString *picture = [pictureUrl lastPathComponent];
+    picture = [picture stringByReplacingOccurrencesOfString:@".jpeg" withString:@".png"];
+    picture = [picture stringByReplacingOccurrencesOfString:@".jpg" withString:@".png"];
+    picture = [[@"~/.engage/resources" stringByExpandingTildeInPath]
+                   stringByAppendingFormat:@"/%@", picture];
+    twitterPicture = new SceneImage([picture UTF8String]);
+    twitterPicture->Scale(0.28, 0.28);
+    twitterPicture->Translate(-240, 60);
+    scene->addChild(twitterPicture);
+    
+    NSString *tags = @"";
+    
+    for(id tagEntity in [data objectForKey:@"instagram_tags"]) {
+        tags = [tags stringByAppendingFormat:@"%@ ", [tagEntity objectForKey:@"tag"]];
+    }
+    
+    drawStrings(scene, tags, 240, 40, 20, 50);
+    
+    smallerBox = new SceneImage("../Resources/smaller-box.png");
+    smallerBox->Scale(0.4, 0.4);
+    smallerBox->Translate(width / 4, -220);
+    scene->addChild(smallerBox);
+    
+    NSString *slugString = [data objectForKey:@"name"];
+    const char *slug = [[@"@" stringByAppendingString:slugString] UTF8String];
+    SceneLabel *slugLabel = new SceneLabel(slug, 20);
+    slugLabel->setColor(0, 0, 0, 1);
+    slugLabel->Translate(width / 4 + 30, -220);
+    scene->addChild(slugLabel);
+    
+    slugString = [data objectForKey:@"profile_url"];
+    slugString = [slugString lastPathComponent];
+    slugString = [slugString stringByReplacingOccurrencesOfString:@".jpg" withString:@".png"];
+    slugString = [slugString stringByReplacingOccurrencesOfString:@".jpeg" withString:@".png"];
+    slugString = [[@"~/.engage/resources" stringByExpandingTildeInPath]
+                  stringByAppendingFormat:@"/%@", slugString];
+    
+    user = new SceneImage([slugString UTF8String]);
+    user->Scale(0.25, 0.25);
+    user->Translate(width / 4 - 140, -220);
+    scene->addChild(user);
     
 }
 
@@ -245,6 +299,8 @@ void EngageClientApp::updateScene(int action, NSDictionary *data) {
         
         if(action == TWITTER) {
             twitter(scene, width, height, data);
+        } else if (action == INSTAGRAM) {
+            instagram(scene, width, height, data);
         }
         
     }
