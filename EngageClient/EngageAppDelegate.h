@@ -20,11 +20,14 @@
     LoginController *login;
     EngageClientApp *app;
     NSTimer *timer;
+    NSTimer *downloadTimer;
 }
 
 @property (assign) IBOutlet NSWindow *window;
 @property (assign) IBOutlet PolycodeView *mainView;
 
 -(void)startVideo:(int)screenIndex;
+-(void)startDownload;
+
 
 @end

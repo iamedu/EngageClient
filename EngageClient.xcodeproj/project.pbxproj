@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2218A2D1193D449300B3F6B9 /* Downloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 2218A2D0193D449300B3F6B9 /* Downloader.m */; };
 		224E1B68193AD31F00D94E35 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 224E1B67193AD31F00D94E35 /* Cocoa.framework */; };
 		224E1B72193AD31F00D94E35 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 224E1B70193AD31F00D94E35 /* InfoPlist.strings */; };
 		224E1B74193AD31F00D94E35 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 224E1B73193AD31F00D94E35 /* main.m */; };
@@ -50,6 +51,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2218A2CF193D449300B3F6B9 /* Downloader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Downloader.h; path = EngageClient/Downloader.h; sourceTree = "<group>"; };
+		2218A2D0193D449300B3F6B9 /* Downloader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Downloader.m; path = EngageClient/Downloader.m; sourceTree = "<group>"; };
 		224E1B64193AD31F00D94E35 /* EngageClient.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EngageClient.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		224E1B67193AD31F00D94E35 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		224E1B6A193AD31F00D94E35 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -130,6 +133,8 @@
 		224E1B5B193AD31F00D94E35 = {
 			isa = PBXGroup;
 			children = (
+				2218A2CF193D449300B3F6B9 /* Downloader.h */,
+				2218A2D0193D449300B3F6B9 /* Downloader.m */,
 				22DC7EE3193C8CD90051274F /* NSScreen+DisplayInfo.h */,
 				22DC7EE4193C8CD90051274F /* NSScreen+DisplayInfo.m */,
 				22DC7EDA193C78040051274F /* LoginController.h */,
@@ -352,6 +357,7 @@
 				22DC7EDD193C78040051274F /* LoginController.mm in Sources */,
 				22DC7EE5193C8CD90051274F /* NSScreen+DisplayInfo.m in Sources */,
 				224E1B74193AD31F00D94E35 /* main.m in Sources */,
+				2218A2D1193D449300B3F6B9 /* Downloader.m in Sources */,
 				224E1B7B193AD31F00D94E35 /* EngageAppDelegate.mm in Sources */,
 				22512AC0193C5652009BA32B /* ColorAnimation.m in Sources */,
 				224E1BB1193AD61000D94E35 /* EngageClientApp.mm in Sources */,

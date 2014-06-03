@@ -8,6 +8,7 @@
 
 #import "LoginController.h"
 #import "EngageAppDelegate.h"
+#import "Downloader.h"
 
 @interface LoginController ()
 
@@ -76,6 +77,8 @@
     }
     
     
+    EngageAppDelegate *delegate = [NSApp delegate];
+    [delegate startDownload];
 }
 
 
