@@ -11,13 +11,16 @@
 
 EngageClientApp::EngageClientApp(PolycodeView *view, int screenIndex) : EventHandler() {
     int index = screenIndex;
+    /*
     NSArray *screenArray = [NSScreen screens];
     NSScreen *screen = [screenArray objectAtIndex: index];
     
-    //NSRect rect = [screen frame];
+    NSRect rect = [screen frame];
+    */
+     
+    width = 1024;//rect.size.width;
+    height = 768;//rect.size.height;
     
-    int width = 1024;//rect.size.width;
-    int height = 768;//rect.size.height;
     
     
     core = new POLYCODE_CORE(view,
@@ -25,18 +28,15 @@ EngageClientApp::EngageClientApp(PolycodeView *view, int screenIndex) : EventHan
                              height,
                              true,
                              true,
-                             0,
+                             6,
                              0,
                              90,
-                             index,
-                             true);
+                             -1,
+                             false);
     
     
     CoreServices::getInstance()->getResourceManager()->addArchive("../Resources/default.pak");
     CoreServices::getInstance()->getResourceManager()->addDirResource("default", false);
-    
-    animationTimer = new Timer(true, 10);
-    animationTimer->addEventListener(this, Timer::EVENT_TRIGGER);
     
     scene = new Scene(Scene::SCENE_2D);
     color = new Color(0xffffffff);
@@ -44,8 +44,141 @@ EngageClientApp::EngageClientApp(PolycodeView *view, int screenIndex) : EventHan
     scene->useClearColor = true;
     scene->getActiveCamera()->setOrthoSize(width, height);
     
+    
     topbar(scene, width, height);
     footer(scene, width, height);
+    
+}
+
+void EngageClientApp::twitter(Scene* scene, float width, float height, NSDictionary* data) {
+    vectorsImage = new SceneImage("../Resources/vectores.png");
+    
+    vectorsImage->Scale(0.20, 0.20);
+    vectorsImage->Translate(width / 4, - (height / 2) + vectorsImage->getImageHeight() * 0.20);
+    
+    scene->addChild(vectorsImage);
+    
+    twitterBackground = new SceneImage("../Resources/medium-box.png");
+    twitterBackground->Scale(0.5, 0.5);
+    twitterBackground->Translate(0, 120);
+    scene->addChild(twitterBackground);
+    
+    user = new SceneImage("../Resources/smaller-box.png");
+    user->Scale(0.4, 0.4);
+    user->Translate(width / 4, -90);
+    scene->addChild(user);
+    
+    NSString *pictureUrl = [data objectForKey:@"picture_url"];
+    
+    if(![[NSNull null] isEqual:pictureUrl]) {
+        NSString *picture = [pictureUrl lastPathComponent];
+        picture = [picture stringByReplacingOccurrencesOfString:@".jpeg" withString:@".png"];
+        picture = [picture stringByReplacingOccurrencesOfString:@".jpg" withString:@".png"];
+        picture = [[@"~/.engage/resources" stringByExpandingTildeInPath]
+                      stringByAppendingFormat:@"/%@", picture];
+        twitterPicture = new SceneImage([picture UTF8String]);
+    } else {
+        twitterPicture = new SceneImage("../Resources/boy.png");
+    }
+
+
+    if(twitterPicture->getImageHeight() > width / 4) {
+        twitterPicture->Scale(height / (twitterPicture->getImageHeight() * 4), height / (twitterPicture->getImageHeight() * 4));
+    } else {
+        twitterPicture->Scale(width / (twitterPicture->getImageWidth() * 3), width / (twitterPicture->getImageWidth() * 3));
+    }
+    
+    twitterPicture->Translate(- width / 4, -150);
+    scene->addChild(twitterPicture);
+    
+    NSString *slugString = [data objectForKey:@"slug"];
+    const char *slug = [[@"@" stringByAppendingString:slugString] UTF8String];
+    SceneLabel *slugLabel = new SceneLabel(slug, 32);
+    slugLabel->setColor(0, 0, 0, 1);
+    slugLabel->Translate(width / 4 + 40, -90);
+    scene->addChild(slugLabel);
+    
+    slugString = [[@"~/.engage/resources" stringByExpandingTildeInPath]
+                  stringByAppendingFormat:@"/%@.png", slugString];
+    
+    user = new SceneImage([slugString UTF8String]);
+    user->Scale(0.5, 0.5);
+    user->Translate(width / 4 - 150, -90);
+    scene->addChild(user);
+    
+    
+    NSString *status = [data objectForKey:@"status"];
+    
+    drawStrings(scene, status, 80, 200, 40, 50);
+    
+    //NSLog(@"%@", data);
+    
+}
+
+void EngageClientApp::drawStrings(Scene* scene, NSString *data, float x, float y, int maxChars, int step) {
+    textReferences.clear();
+    
+    
+    
+    NSArray *array = [data componentsSeparatedByString:@" "];
+    NSArray *statuses = [[NSArray alloc] init];
+    NSString *current = @"";
+    
+    for(id part in array) {
+        NSString *proposed = [current stringByAppendingString:part];
+        if([proposed length] <= maxChars) {
+            current = proposed;
+            current = [current stringByAppendingString:@" "];
+        } else {
+            statuses = [statuses arrayByAddingObject:current];
+            current = part;
+            current = [current stringByAppendingString:@" "];
+        }
+    }
+    
+    statuses = [statuses arrayByAddingObject:current];
+    
+    
+    
+    int idx = 0;
+    for(id str in statuses) {
+        NSString *strData = str;
+        SceneLabel *status = new SceneLabel([strData UTF8String], 32);
+        status->setColor(0, 0, 0, 1);
+        status->setPosition(x, y - step * idx);
+        
+        textReferences.push_back(status);
+        
+        scene->addChild(status);
+        idx++;
+
+    }
+    
+    
+}
+
+void EngageClientApp::clean(Scene* scene) {
+    
+    for (unsigned i=0; i<textReferences.size(); i++) {
+        SceneLabel *status = textReferences.at(i);
+        scene->removeEntity(status);
+    }
+    if(vectorsImage) {
+        scene->removeEntity(vectorsImage);
+    }
+    if(twitterBackground) {
+        scene->removeEntity(twitterBackground);
+    }
+    if(twitterPicture) {
+        scene->removeEntity(twitterPicture);
+    }
+    if(user) {
+        scene->removeEntity(user);
+    }
+}
+
+
+void EngageClientApp::instagram(Scene* scene, float width, float height) {
     
 }
 
@@ -70,7 +203,7 @@ void EngageClientApp::topbar(Scene* scene, float width, float height) {
     int fontSize = 40 * (height / 768);
     
     SceneLabel *participaLabel = new SceneLabel("Trabajo", fontSize);
-    participaLabel->setPosition(2 * width / 20, height / 2 - fontSize *  3 / 2);
+    participaLabel->setPosition(1 * width / 20, height / 2 - fontSize *  3 / 2);
     scene->addChild(participaLabel);
     
     SceneLabel *boldLabel = new SceneLabel("Sin fronteras", fontSize, "Gill Sans Bold");
@@ -86,7 +219,6 @@ void EngageClientApp::footer(Scene* scene, float width, float height) {
     
     image->Scale(width / image->getImageWidth(), width / image->getImageWidth());
     float newHeight = image->getImageHeight() * (width / image->getImageWidth());
-    NSLog(@"%f", newHeight);
     image->Translate(0, - (height / 2) + (newHeight / 2));
     
     scene->addChild(image);
@@ -107,7 +239,19 @@ void EngageClientApp::footer(Scene* scene, float width, float height) {
 
 }
 
-void EngageClientApp::handleEvent(Event *e) {
+void EngageClientApp::updateScene(int action, NSDictionary *data) {
+    if(current == 0) {
+        clean(scene);
+        
+        if(action == TWITTER) {
+            twitter(scene, width, height, data);
+        }
+        
+    }
+    current += 1;
+    if(current == changeEvery) {
+        current = 0;
+    }
     
 }
 

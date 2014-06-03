@@ -22,6 +22,8 @@
     NSTimer *timer;
     NSTimer *downloadTimer;
 }
+@property(nonatomic, strong) NSArray *tweets;
+@property(nonatomic, strong) NSArray *instagrams;
 
 @property (assign) IBOutlet NSWindow *window;
 @property (assign) IBOutlet PolycodeView *mainView;

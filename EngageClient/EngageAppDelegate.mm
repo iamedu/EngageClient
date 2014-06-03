@@ -13,6 +13,8 @@
 
 @synthesize window;
 @synthesize mainView;
+@synthesize tweets;
+@synthesize instagrams;
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
@@ -38,16 +40,14 @@
 {
     downloadTimer = [NSTimer scheduledTimerWithTimeInterval:60.0f
                                                      target:self
-                                                   selector:@selector(downloadResources:)
+                                                   selector:@selector(downloadDefinitions:)
                                                    userInfo:nil
                                                     repeats:YES];
     
-    [self downloadResources:downloadTimer];
+    [self downloadDefinitions:downloadTimer];
     
     [[NSRunLoop currentRunLoop] addTimer:downloadTimer forMode:NSDefaultRunLoopMode];
 	[[NSRunLoop currentRunLoop] addTimer:downloadTimer forMode:NSEventTrackingRunLoopMode];
-    
-
 }
 
 
@@ -56,12 +56,18 @@
 	return YES;
 }
 
-- (void)downloadResources:(NSTimer *)timer
+- (void)downloadDefinitions:(NSTimer *)t
+{
+    NSThread *th = [[NSThread alloc] initWithTarget:self selector:@selector(doDownloadDefinitions:) object:t];
+    [th start];
+}
+
+- (void)doDownloadDefinitions:(NSTimer *)timer
 {
     NSArray *resources = [NSArray arrayWithObjects:@"http://uxtweet.herokuapp.com/api/v1/twitter/list-approved-tweets",
-                                                   @"http://uxtweet.herokuapp.com/api/v1/twitter/list-not-approved-ids",
-                                                   @"http://uxtweet.herokuapp.com/api/v1/instagram/list-approved-instagrams",
-                                                   @"http://uxtweet.herokuapp.com/api/v1/instagram/list-not-approved-links", nil];
+                          @"http://uxtweet.herokuapp.com/api/v1/twitter/list-not-approved-ids",
+                          @"http://uxtweet.herokuapp.com/api/v1/instagram/list-approved-instagrams",
+                          @"http://uxtweet.herokuapp.com/api/v1/instagram/list-not-approved-links", nil];
     
     for(id resource in resources) {
         Downloader *downloader = [[Downloader alloc] initWithDownloadUrl:resource];
@@ -69,17 +75,26 @@
     }
     
     NSData *tweetString = [NSData dataWithContentsOfFile:
-                       [@"~/.engage/resources/list-approved-tweets.json" stringByExpandingTildeInPath]];
+                           [@"~/.engage/resources/list-approved-tweets.json" stringByExpandingTildeInPath]];
     
     NSData *instagramString = [NSData dataWithContentsOfFile:
-                       [@"~/.engage/resources/list-approved-instagrams.json" stringByExpandingTildeInPath]];
+                               [@"~/.engage/resources/list-approved-instagrams.json" stringByExpandingTildeInPath]];
     
     NSError *jsonParsingError;
-    NSArray *tweets = [NSJSONSerialization JSONObjectWithData:tweetString
-                           options:0 error: &jsonParsingError];
+    tweets = [NSJSONSerialization JSONObjectWithData:tweetString
+                                             options:0 error: &jsonParsingError];
     
-    NSArray *instagrams = [NSJSONSerialization JSONObjectWithData:instagramString
-                                                      options:0 error: &jsonParsingError];
+    instagrams = [NSJSONSerialization JSONObjectWithData:instagramString
+                                                 options:0 error: &jsonParsingError];
+    
+    sleep(5);
+    [self downloadResources];
+}
+
+
+- (void)downloadResources
+{
+    NSLog(@"Downloading resources");
     
     if(tweets) {
         for(id tweet in tweets) {
@@ -116,6 +131,10 @@
 
 - (void)animationTimer:(NSTimer *)timer
 {
+    if(tweets) {
+        NSUInteger randomIndex = arc4random() % [tweets count];
+        app->updateScene(TWITTER, [tweets objectAtIndex:randomIndex]);
+    }
 	if(!app->Update()) {
 		[[NSApplication sharedApplication] stop:self];
 	}

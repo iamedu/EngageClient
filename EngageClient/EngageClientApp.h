@@ -10,29 +10,50 @@
 #define __EngageClient__EngageClientApp__
 
 #include <Polycode.h>
+#include <PolyString.h>
 #include <PolycodeView.h>
+#include <string>
+#include <vector>
 
 using namespace Polycode;
+
+#define TWITTER 0
 
 class EngageClientApp : public EventHandler {
 public:
     EngageClientApp(PolycodeView *view, int screenIndex);
     ~EngageClientApp();
     
+    void clean(Scene* scene);
+    void twitter(Scene *scene, float width, float height, NSDictionary *data);
+    void instagram(Scene *scene, float width, float height);
     void topbar(Scene* scene, float width, float height);
     void footer(Scene* scene, float width, float height);
-    
-    void handleEvent(Event *e);
-    
+        
+    void updateScene(int action, NSDictionary *data);
+    void drawStrings(Scene* scene, NSString* data, float x, float y, int maxChars, int step);
+
     bool Update();
     
 private:
+    SceneImage *user;
+    
+    //Twitter
+    SceneImage *vectorsImage;
+    SceneImage *twitterPicture;
+    SceneImage *twitterBackground;
     
     Core *core;
     Scene *scene;
     Color *color;
     SceneImage *image;
     Timer *animationTimer;
+    std::vector<SceneLabel *> textReferences;
+    
+    int current = 0;
+    int changeEvery = 60 * 2;
+    int width;
+    int height;
 };
 
 

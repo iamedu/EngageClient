@@ -80,12 +80,43 @@
     NSString *homeDirectory = NSHomeDirectory();
     NSString *originalPath = [[homeDirectory stringByAppendingPathComponent:@".engage/download"]
                                     stringByAppendingPathComponent:self.filename];
-    NSString *targetPath = [[homeDirectory stringByAppendingPathComponent:@".engage/resources"]
-                                    stringByAppendingPathComponent:self.filename];
     
     
     NSFileManager * manager = [NSFileManager defaultManager];
     NSError *error;
+    
+    if([self.filename hasSuffix:@".jpeg"] || [self.filename hasSuffix:@".jpg"]) {
+        
+        NSImage * image = [[NSImage alloc] initWithContentsOfFile:originalPath];
+        [image lockFocus];
+        NSBitmapImageRep *bitmapRep = [[NSBitmapImageRep alloc] initWithFocusedViewRect:NSMakeRect(0, 0, image.size.width, image.size.height)];
+        [image unlockFocus];
+        NSData * pngRep = [bitmapRep representationUsingType:NSPNGFileType properties:Nil];
+        
+        
+        self.filename = [self.filename stringByReplacingOccurrencesOfString:@".jpeg" withString:@".png"];
+        self.filename = [self.filename stringByReplacingOccurrencesOfString:@".jpg" withString:@".png"];
+        
+        
+        
+        [manager removeItemAtPath:originalPath error:&error];
+        originalPath = [[homeDirectory stringByAppendingPathComponent:@".engage/download"]
+                        stringByAppendingPathComponent:self.filename];
+        
+        if(![pngRep writeToFile:originalPath
+                     options:NSDataWritingAtomic
+                    error:&error]) {
+            NSLog(@"CANNOT DO THIS %@", error);
+        }
+        
+        
+        
+    }
+    
+    
+    NSString *targetPath = [[homeDirectory stringByAppendingPathComponent:@".engage/resources"]
+                            stringByAppendingPathComponent:self.filename];
+
     
     [manager moveItemAtPath:originalPath toPath:targetPath error:&error];
     [manager removeItemAtPath:originalPath error:&error];
