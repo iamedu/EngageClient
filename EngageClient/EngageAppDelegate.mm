@@ -68,6 +68,49 @@
         [downloader startDownloadingURL:self];
     }
     
+    NSData *tweetString = [NSData dataWithContentsOfFile:
+                       [@"~/.engage/resources/list-approved-tweets.json" stringByExpandingTildeInPath]];
+    
+    NSData *instagramString = [NSData dataWithContentsOfFile:
+                       [@"~/.engage/resources/list-approved-instagrams.json" stringByExpandingTildeInPath]];
+    
+    NSError *jsonParsingError;
+    NSArray *tweets = [NSJSONSerialization JSONObjectWithData:tweetString
+                           options:0 error: &jsonParsingError];
+    
+    NSArray *instagrams = [NSJSONSerialization JSONObjectWithData:instagramString
+                                                      options:0 error: &jsonParsingError];
+    
+    if(tweets) {
+        for(id tweet in tweets) {
+            NSString* picture = [tweet objectForKey:@"picture_url"];
+            NSString* slug = [@"http://uxtweet.herokuapp.com/api/v1/twitter/picture/" stringByAppendingString:[tweet objectForKey:@"slug"]];
+            if (![[NSNull null] isEqual:picture]) {
+                Downloader *downloader = [[Downloader alloc] initWithDownloadUrl:picture];
+                [downloader startDownloadingURL:self];
+            }
+            
+            Downloader *slugDownloader = [[Downloader alloc] initWithDownloadUrl:slug];
+            [slugDownloader startDownloadingURL:self];
+            
+        }
+    }
+
+    if(instagrams) {
+        for(id instagram in instagrams) {
+            NSString* profileUrl = [instagram objectForKey:@"profile_url"];
+            NSString* standardResolution = [instagram objectForKey:@"standard_resolution"];
+            
+            Downloader *downloader1 = [[Downloader alloc] initWithDownloadUrl:profileUrl];
+            [downloader1 startDownloadingURL:self];
+            
+            Downloader *downloader2 = [[Downloader alloc] initWithDownloadUrl:standardResolution];
+            [downloader2 startDownloadingURL:self];
+
+        }
+    }
+    
+    
 	NSLog(@"Started downloads");
 }
 

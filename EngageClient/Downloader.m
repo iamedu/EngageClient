@@ -88,6 +88,7 @@
     NSError *error;
     
     [manager moveItemAtPath:originalPath toPath:targetPath error:&error];
+    [manager removeItemAtPath:originalPath error:&error];
         
     NSLog(@"%@",@"downloadDidFinish");
     
