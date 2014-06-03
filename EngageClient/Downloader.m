@@ -31,6 +31,9 @@
     NSError *error;
     NSString * path = [NSHomeDirectory() stringByAppendingString:@"/.engage/download"];
     [[NSFileManager defaultManager] createDirectoryAtPath:path withIntermediateDirectories:YES attributes:nil error:&error];
+    
+    path = [NSHomeDirectory() stringByAppendingString:@"/.engage/resources"];
+    [[NSFileManager defaultManager] createDirectoryAtPath:path withIntermediateDirectories:YES attributes:nil error:&error];
         
     // Create the download with the request and start loading the data.
     NSURLDownload  *theDownload = [[NSURLDownload alloc] initWithRequest:theRequest delegate:self];
@@ -40,14 +43,16 @@
 }
 
 
-- (void)download:(NSURLDownload *)download decideDestinationWithSuggestedFilename:(NSString *)filename
+- (void)download:(NSURLDownload *)download decideDestinationWithSuggestedFilename:(NSString *)filename_
 {
     NSString *destinationFilename;
     NSString *homeDirectory = NSHomeDirectory();
     
+    self.filename = filename_;
+    
     
     destinationFilename = [[homeDirectory stringByAppendingPathComponent:@".engage/download"]
-                           stringByAppendingPathComponent:filename];
+                           stringByAppendingPathComponent:self.filename];
     
     [download setDestination:destinationFilename allowOverwrite:YES];
 }
@@ -72,12 +77,18 @@
 - (void)downloadDidFinish:(NSURLDownload *)download
 {
     
-    // Dispose of any references to the download object
-    // that your app might keep.
+    NSString *homeDirectory = NSHomeDirectory();
+    NSString *originalPath = [[homeDirectory stringByAppendingPathComponent:@".engage/download"]
+                                    stringByAppendingPathComponent:self.filename];
+    NSString *targetPath = [[homeDirectory stringByAppendingPathComponent:@".engage/resources"]
+                                    stringByAppendingPathComponent:self.filename];
     
     
-    // Do something with the data.
+    NSFileManager * manager = [NSFileManager defaultManager];
+    NSError *error;
     
+    [manager moveItemAtPath:originalPath toPath:targetPath error:&error];
+        
     NSLog(@"%@",@"downloadDidFinish");
     
 }

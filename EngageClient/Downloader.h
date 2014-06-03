@@ -11,6 +11,7 @@
 @interface Downloader : NSObject<NSURLDownloadDelegate>
 
 @property (strong) NSString *downloadUrl;
+@property (strong) NSString *filename;
 
 
 - (id) initWithDownloadUrl:(NSString *)downloadUrl;
