@@ -20,6 +20,8 @@ public:
     EngageClientApp(PolycodeView *view, int screenIndex);
     ~EngageClientApp();
     
+    void footer(Scene* scene, float width, float height);
+    
     void handleEvent(Event *e);
     
     bool Update();

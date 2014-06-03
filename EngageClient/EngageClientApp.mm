@@ -39,18 +39,25 @@ EngageClientApp::EngageClientApp(PolycodeView *view, int screenIndex) : EventHan
     animationTimer->addEventListener(this, Timer::EVENT_TRIGGER);
     
     scene = new Scene(Scene::SCENE_2D);
-    color = new Color(0x34495eff);
+    color = new Color(0xffffffff);
     scene->clearColor = color;
     scene->useClearColor = true;
-    scene->getActiveCamera()->setOrthoSize(1024, 768);
-    image = new SceneImage("../Resources/logo_engagewall.png");
-    scene->addChild(image);
+    scene->getActiveCamera()->setOrthoSize(width, height);
     
-    ScenePrimitive *planet = new ScenePrimitive(ScenePrimitive::TYPE_VPLANE, 1200.0, 400.0);
-    planet->setPosition(0,0);
-    planet->setColor(0, 0, 0, 0.4);
-    planet->colorAffectsChildren = false;
-    scene->addChild(planet);
+    footer(scene, width, height);
+    
+}
+
+void EngageClientApp::footer(Scene* scene, float width, float height) {
+    SceneImage *image = new SceneImage("../Resources/footer.png");
+    
+    image->Scale(width / image->getImageWidth(), width / image->getImageWidth());
+    float newHeight = image->getImageHeight() * (width / image->getImageWidth());
+    NSLog(@"%f", newHeight);
+    image->Translate(0, - (height / 2) + (newHeight / 2));
+    
+    scene->addChild(image);
+
 }
 
 void EngageClientApp::handleEvent(Event *e) {

@@ -25,7 +25,7 @@
     // Create the request.
     NSURLRequest *theRequest = [NSURLRequest requestWithURL:[NSURL URLWithString:self.downloadUrl]
                                                 cachePolicy:NSURLRequestUseProtocolCachePolicy
-                                                timeoutInterval:60.0];
+                                                timeoutInterval:30.0];
     
     
     NSError *error;
