@@ -82,14 +82,12 @@
     
     NSError *jsonParsingError;
     
-    
-    sleep(5);
     if(tweetString) {
         tweets = [NSJSONSerialization JSONObjectWithData:tweetString
                                                  options:0 error: &jsonParsingError];
         
     }
-    if(instagrams) {
+    if(instagramString) {
         instagrams = [NSJSONSerialization JSONObjectWithData:instagramString
                                                      options:0 error: &jsonParsingError];
     }

@@ -33,7 +33,7 @@ public:
     void footer(Scene* scene, float width, float height);
         
     void updateScene(int action, NSDictionary *data);
-    void drawStrings(Scene* scene, NSString* data, float x, float y, int maxChars, int step);
+    void drawStrings(Scene* scene, NSString* data, float x, float y, int maxChars, int step, int maxLines = 0);
 
     bool Update();
     
@@ -55,7 +55,7 @@ private:
     std::vector<SceneLabel *> textReferences;
     
     int current = 0;
-    int changeEvery = 60 * 2;
+    int changeEvery = 60 * 5;
     int width;
     int height;
 };

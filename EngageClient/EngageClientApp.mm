@@ -109,13 +109,15 @@ void EngageClientApp::twitter(Scene* scene, float width, float height, NSDiction
     
     NSString *status = [data objectForKey:@"status"];
     
+    NSLog(@"%@", status);
+    
     drawStrings(scene, status, 80, 200, 40, 50);
     
     //NSLog(@"%@", data);
     
 }
 
-void EngageClientApp::drawStrings(Scene* scene, NSString *data, float x, float y, int maxChars, int step) {
+void EngageClientApp::drawStrings(Scene* scene, NSString *data, float x, float y, int maxChars, int step, int maxLines) {
     textReferences.clear();
     
     
@@ -123,6 +125,8 @@ void EngageClientApp::drawStrings(Scene* scene, NSString *data, float x, float y
     NSArray *array = [data componentsSeparatedByString:@" "];
     NSArray *statuses = [[NSArray alloc] init];
     NSString *current = @"";
+    
+    int i = 0;
     
     for(id part in array) {
         NSString *proposed = [current stringByAppendingString:part];
@@ -133,10 +137,16 @@ void EngageClientApp::drawStrings(Scene* scene, NSString *data, float x, float y
             statuses = [statuses arrayByAddingObject:current];
             current = part;
             current = [current stringByAppendingString:@" "];
+            i++;
+        }
+        if(maxLines > 0 && i >= maxLines) {
+            break;
         }
     }
     
-    statuses = [statuses arrayByAddingObject:current];
+    if(maxLines == 0 || i < maxLines) {
+        statuses = [statuses arrayByAddingObject:current];
+    }
     
     
     
@@ -208,7 +218,7 @@ void EngageClientApp::instagram(Scene* scene, float width, float height, NSDicti
         tags = [tags stringByAppendingFormat:@"%@ ", [tagEntity objectForKey:@"tag"]];
     }
     
-    drawStrings(scene, tags, 240, 40, 20, 50);
+    drawStrings(scene, tags, 240, 40, 20, 50, 4);
     
     smallerBox = new SceneImage("../Resources/smaller-box.png");
     smallerBox->Scale(0.4, 0.4);
@@ -260,7 +270,7 @@ void EngageClientApp::topbar(Scene* scene, float width, float height) {
     participaLabel->setPosition(1 * width / 20, height / 2 - fontSize *  3 / 2);
     scene->addChild(participaLabel);
     
-    SceneLabel *boldLabel = new SceneLabel("Sin fronteras", fontSize, "Gill Sans Bold");
+    SceneLabel *boldLabel = new SceneLabel("sin Fronteras", fontSize, "Gill Sans Bold");
     boldLabel->setPosition(6 * width / 20, height / 2 - fontSize *  3 / 2);
     scene->addChild(boldLabel);
     
@@ -283,7 +293,7 @@ void EngageClientApp::footer(Scene* scene, float width, float height) {
     ciscoLabel->setPosition(- 7 * width / 20, - height / 2 + fontSize *  15 / 14);
     scene->addChild(ciscoLabel);
     
-    SceneLabel *participaLabel = new SceneLabel("@Participa", fontSize);
+    SceneLabel *participaLabel = new SceneLabel("Participa", fontSize);
     participaLabel->setPosition(4 * width / 20, - height / 2 + fontSize *  15 / 14);
     scene->addChild(participaLabel);
     
