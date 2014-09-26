@@ -29,6 +29,9 @@ public:
     void clean(Scene* scene);
     void twitter(Scene *scene, float width, float height, NSDictionary *data);
     void instagram(Scene *scene, float width, float height, NSDictionary *data);
+    
+    void background(Scene* scene, float width, float height);
+    
     void topbar(Scene* scene, float width, float height);
     void footer(Scene* scene, float width, float height);
         

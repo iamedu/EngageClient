@@ -31,7 +31,7 @@
 
 -(IBAction)startApp:(id)sender;
 {
-    EngageAppDelegate *delegate = [NSApp delegate];
+    EngageAppDelegate *delegate = (EngageAppDelegate *)[NSApp delegate];
     
     
     NSArray * selected = [displayArrayController selectedObjects];
@@ -77,7 +77,7 @@
     }
     
     
-    EngageAppDelegate *delegate = [NSApp delegate];
+    EngageAppDelegate *delegate = (EngageAppDelegate *)[NSApp delegate];
     [delegate startDownload];
 }
 

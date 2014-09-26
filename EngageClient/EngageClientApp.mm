@@ -11,15 +11,13 @@
 
 EngageClientApp::EngageClientApp(PolycodeView *view, int screenIndex) : EventHandler() {
     int index = screenIndex;
-    /*
     NSArray *screenArray = [NSScreen screens];
     NSScreen *screen = [screenArray objectAtIndex: index];
     
     NSRect rect = [screen frame];
-    */
      
-    width = 1024;//rect.size.width;
-    height = 768;//rect.size.height;
+    width = 720;//rect.size.width;
+    height = 405;//rect.size.height;
     
     
     
@@ -31,7 +29,7 @@ EngageClientApp::EngageClientApp(PolycodeView *view, int screenIndex) : EventHan
                              6,
                              0,
                              90,
-                             -1,
+                             index,
                              false);
     
     
@@ -45,75 +43,8 @@ EngageClientApp::EngageClientApp(PolycodeView *view, int screenIndex) : EventHan
     scene->getActiveCamera()->setOrthoSize(width, height);
     
     
-    topbar(scene, width, height);
-    footer(scene, width, height);
-    
-}
-
-void EngageClientApp::twitter(Scene* scene, float width, float height, NSDictionary* data) {
-    vectorsImage = new SceneImage("../Resources/vectores.png");
-    
-    vectorsImage->Scale(0.20, 0.20);
-    vectorsImage->Translate(width / 4, - (height / 2) + vectorsImage->getImageHeight() * 0.20);
-    
-    scene->addChild(vectorsImage);
-    
-    twitterBackground = new SceneImage("../Resources/medium-box.png");
-    twitterBackground->Scale(0.5, 0.5);
-    twitterBackground->Translate(0, 120);
-    scene->addChild(twitterBackground);
-    
-    smallerBox = new SceneImage("../Resources/smaller-box.png");
-    smallerBox->Scale(0.4, 0.4);
-    smallerBox->Translate(width / 4, -90);
-    scene->addChild(smallerBox);
-    
-    NSString *pictureUrl = [data objectForKey:@"picture_url"];
-    
-    if(![[NSNull null] isEqual:pictureUrl]) {
-        NSString *picture = [pictureUrl lastPathComponent];
-        picture = [picture stringByReplacingOccurrencesOfString:@".jpeg" withString:@".png"];
-        picture = [picture stringByReplacingOccurrencesOfString:@".jpg" withString:@".png"];
-        picture = [[@"~/.engage/resources" stringByExpandingTildeInPath]
-                      stringByAppendingFormat:@"/%@", picture];
-        twitterPicture = new SceneImage([picture UTF8String]);
-    } else {
-        twitterPicture = new SceneImage("../Resources/boy.png");
-    }
-
-
-    if(twitterPicture->getImageHeight() > width / 4) {
-        twitterPicture->Scale(height / (twitterPicture->getImageHeight() * 4), height / (twitterPicture->getImageHeight() * 4));
-    } else {
-        twitterPicture->Scale(width / (twitterPicture->getImageWidth() * 3), width / (twitterPicture->getImageWidth() * 3));
-    }
-    
-    twitterPicture->Translate(- width / 4, -150);
-    scene->addChild(twitterPicture);
-    
-    NSString *slugString = [data objectForKey:@"slug"];
-    const char *slug = [[@"@" stringByAppendingString:slugString] UTF8String];
-    SceneLabel *slugLabel = new SceneLabel(slug, 20);
-    slugLabel->setColor(0, 0, 0, 1);
-    slugLabel->Translate(width / 4 + 40, -90);
-    scene->addChild(slugLabel);
-    
-    slugString = [[@"~/.engage/resources" stringByExpandingTildeInPath]
-                  stringByAppendingFormat:@"/%@.png", slugString];
-    
-    user = new SceneImage([slugString UTF8String]);
-    user->Scale(0.5, 0.5);
-    user->Translate(width / 4 - 150, -90);
-    scene->addChild(user);
-    
-    
-    NSString *status = [data objectForKey:@"status"];
-    
-    NSLog(@"%@", status);
-    
-    drawStrings(scene, status, 80, 200, 40, 50);
-    
-    //NSLog(@"%@", data);
+    //topbar(scene, width, height);
+    //footer(scene, width, height);
     
 }
 
@@ -153,7 +84,7 @@ void EngageClientApp::drawStrings(Scene* scene, NSString *data, float x, float y
     int idx = 0;
     for(id str in statuses) {
         NSString *strData = str;
-        SceneLabel *status = new SceneLabel([strData UTF8String], 32);
+        SceneLabel *status = new SceneLabel([strData UTF8String], 20);
         status->setColor(0, 0, 0, 1);
         status->setPosition(x, y - step * idx);
         
@@ -193,57 +124,74 @@ void EngageClientApp::clean(Scene* scene) {
 }
 
 
-void EngageClientApp::instagram(Scene* scene, float width, float height, NSDictionary* data) {
-    biggerBox = new SceneImage("../Resources/bigger-box.png");
-    biggerBox->Scale(0.45, 0.45);
-    biggerBox->Translate(0, 50);
-    scene->addChild(biggerBox);
+void EngageClientApp::twitter(Scene* scene, float width, float height, NSDictionary* data) {
+    background(scene, width, height);
     
-    NSString *pictureUrl = [data objectForKey:@"standard_resolution"];
+    SceneImage *twitterBackground = new SceneImage("../Resources/twitter.png");
+    twitterBackground->Scale(0.3, 0.3);
+    twitterBackground->Translate(-width / 4, height / 8);
     
+    NSString *pictureUrl = [data objectForKey:@"picture_url"];
     
-    NSString *picture = [pictureUrl lastPathComponent];
-    picture = [picture stringByReplacingOccurrencesOfString:@".jpeg" withString:@".png"];
-    picture = [picture stringByReplacingOccurrencesOfString:@".jpg" withString:@".png"];
-    picture = [[@"~/.engage/resources" stringByExpandingTildeInPath]
+    if(![[NSNull null] isEqual:pictureUrl]) {
+        NSString *picture = [data objectForKey:@"twitter_id"];
+        picture = [picture stringByAppendingString:@".png"];
+        picture = [[@"~/.engage/resources" stringByExpandingTildeInPath]
                    stringByAppendingFormat:@"/%@", picture];
-    twitterPicture = new SceneImage([picture UTF8String]);
-    twitterPicture->Scale(0.28, 0.28);
-    twitterPicture->Translate(-240, 60);
-    scene->addChild(twitterPicture);
-    
-    NSString *tags = @"";
-    
-    for(id tagEntity in [data objectForKey:@"instagram_tags"]) {
-        tags = [tags stringByAppendingFormat:@"%@ ", [tagEntity objectForKey:@"tag"]];
+        twitterPicture = new SceneImage([picture UTF8String]);
+        
+        if(twitterPicture->getImageHeight() > width / 4) {
+            twitterPicture->Scale(height / (twitterPicture->getImageHeight() * 4), height / (twitterPicture->getImageHeight() * 4));
+        } else {
+            twitterPicture->Scale(width / (twitterPicture->getImageWidth() * 3), width / (twitterPicture->getImageWidth() * 3));
+        }
+        
+        twitterPicture->Translate(-width / 4, -60);
+        scene->addChild(twitterPicture);
+        
     }
     
-    drawStrings(scene, tags, 240, 40, 20, 50, 4);
-    
-    smallerBox = new SceneImage("../Resources/smaller-box.png");
-    smallerBox->Scale(0.4, 0.4);
-    smallerBox->Translate(width / 4, -220);
-    scene->addChild(smallerBox);
-    
-    NSString *slugString = [data objectForKey:@"name"];
+    NSString *slugString = [data objectForKey:@"slug"];
     const char *slug = [[@"@" stringByAppendingString:slugString] UTF8String];
     SceneLabel *slugLabel = new SceneLabel(slug, 20);
     slugLabel->setColor(0, 0, 0, 1);
-    slugLabel->Translate(width / 4 + 30, -220);
+    slugLabel->Translate(60, -70);
     scene->addChild(slugLabel);
     
-    slugString = [data objectForKey:@"profile_url"];
-    slugString = [slugString lastPathComponent];
-    slugString = [slugString stringByReplacingOccurrencesOfString:@".jpg" withString:@".png"];
-    slugString = [slugString stringByReplacingOccurrencesOfString:@".jpeg" withString:@".png"];
     slugString = [[@"~/.engage/resources" stringByExpandingTildeInPath]
-                  stringByAppendingFormat:@"/%@", slugString];
+                  stringByAppendingFormat:@"/%@.png", slugString];
     
     user = new SceneImage([slugString UTF8String]);
-    user->Scale(0.25, 0.25);
-    user->Translate(width / 4 - 140, -220);
+    user->Scale(0.5, 0.5);
+    user->Translate(-50, -70);
     scene->addChild(user);
     
+    
+    NSString *status = [data objectForKey:@"status"];
+    
+    NSLog(@"%@", status);
+    
+    drawStrings(scene, status, 90, 80, 40, 20);
+    
+    scene->addChild(twitterBackground);
+    
+}
+
+void EngageClientApp::instagram(Scene* scene, float width, float height, NSDictionary* data) {
+    background(scene, width, height);
+    
+    SceneImage *instagramPicture = new SceneImage("../Resources/instagram.png");
+    instagramPicture->Scale(0.3, 0.3);
+    instagramPicture->Translate(-width / 4, height / 14);
+    
+    scene->addChild(instagramPicture);
+    
+}
+
+void EngageClientApp::background(Scene* scene, float width, float height) {
+    SceneImage *background = new SceneImage("../Resources/engagewall_AS_fondo.png");
+    background->Scale(width / background->getImageWidth(), height / background->getImageHeight());
+    scene->addChild(background);
 }
 
 void EngageClientApp::topbar(Scene* scene, float width, float height) {

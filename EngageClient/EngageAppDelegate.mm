@@ -105,6 +105,9 @@
             NSString* picture = [tweet objectForKey:@"picture_url"];
             NSString* slug = [@"http://uxtweet.herokuapp.com/api/v1/twitter/picture/" stringByAppendingString:[tweet objectForKey:@"slug"]];
             if (![[NSNull null] isEqual:picture]) {
+                picture = [@"http://uxtweet.herokuapp.com/api/v1/twitter/twit-picture/"
+                           stringByAppendingString:[tweet objectForKey:@"twitter_id"]];
+                picture = [picture stringByAppendingString:@".jpg"];
                 Downloader *downloader = [[Downloader alloc] initWithDownloadUrl:picture];
                 [downloader startDownloadingURL:self];
             }
