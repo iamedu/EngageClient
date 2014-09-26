@@ -36,7 +36,7 @@ public:
     void footer(Scene* scene, float width, float height);
         
     void updateScene(int action, NSDictionary *data);
-    void drawStrings(Scene* scene, NSString* data, float x, float y, int maxChars, int step, int maxLines = 0);
+    void drawStrings(Scene* scene, NSString* data, float x, float y, int maxChars, int step, int maxLines = 0, int size = 20);
 
     bool Update();
     
