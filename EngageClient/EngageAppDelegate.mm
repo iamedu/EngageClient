@@ -26,7 +26,7 @@
 -(void)startVideo:(int)screenIndex
 {
     app = new EngageClientApp(mainView, screenIndex);
-	timer = [NSTimer timerWithTimeInterval:(1.0f/240.0f)
+	timer = [NSTimer timerWithTimeInterval:(1.0f/60.0f)
                                     target:self
                                   selector:@selector(animationTimer:)
                                   userInfo:nil
@@ -38,7 +38,7 @@
 
 -(void)startDownload
 {
-    downloadTimer = [NSTimer scheduledTimerWithTimeInterval:5.0f
+    downloadTimer = [NSTimer scheduledTimerWithTimeInterval:30.0f
                                                      target:self
                                                    selector:@selector(downloadDefinitions:)
                                                    userInfo:nil
@@ -136,7 +136,7 @@
 
 - (void)animationTimer:(NSTimer *)timer
 {
-    NSUInteger randomNetwork = 1;//arc4random() % 2;
+    NSUInteger randomNetwork = arc4random() % 2;
     if(instagrams && randomNetwork == 1) {
         NSUInteger randomIndex = arc4random() % [instagrams count];
         app->updateScene(INSTAGRAM, [instagrams objectAtIndex:randomIndex]);
