@@ -10,33 +10,33 @@
 	<string>EngageClient</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
-		<key>2025E46A-1D44-4F12-94D0-38F04CBE17A4</key>
-		<string>ssh://github.com/iamedu/EngageClient.git</string>
-		<key>C3E27B13-A5B7-45A9-B921-6AC3D81BDC02</key>
-		<string>ssh://github.com/ivansafrin/Polycode.git</string>
+		<key>851F2E9F7E83E75B211DF8654129E36C7F44FEB2</key>
+		<string>github.com:iamedu/EngageClient.git</string>
+		<key>BA7B57CFFA0E2C9A820883F90A39AA6329AE6D93</key>
+		<string>github.com:ivansafrin/Polycode.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>EngageClient.xcodeproj/project.xcworkspace</string>
+	<string>EngageClient.xcodeproj</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
-		<key>2025E46A-1D44-4F12-94D0-38F04CBE17A4</key>
+		<key>851F2E9F7E83E75B211DF8654129E36C7F44FEB2</key>
 		<string>../..</string>
-		<key>C3E27B13-A5B7-45A9-B921-6AC3D81BDC02</key>
-		<string>../../../Polycode</string>
+		<key>BA7B57CFFA0E2C9A820883F90A39AA6329AE6D93</key>
+		<string>../../../../../Tools/Polycode</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
-	<string>ssh://github.com/iamedu/EngageClient.git</string>
+	<string>github.com:iamedu/EngageClient.git</string>
 	<key>IDESourceControlProjectVersion</key>
-	<integer>110</integer>
+	<integer>111</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>2025E46A-1D44-4F12-94D0-38F04CBE17A4</string>
+	<string>851F2E9F7E83E75B211DF8654129E36C7F44FEB2</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>2025E46A-1D44-4F12-94D0-38F04CBE17A4</string>
+			<string>851F2E9F7E83E75B211DF8654129E36C7F44FEB2</string>
 			<key>IDESourceControlWCCName</key>
 			<string>EngageClient</string>
 		</dict>
@@ -44,7 +44,7 @@
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>C3E27B13-A5B7-45A9-B921-6AC3D81BDC02</string>
+			<string>BA7B57CFFA0E2C9A820883F90A39AA6329AE6D93</string>
 			<key>IDESourceControlWCCName</key>
 			<string>Polycode</string>
 		</dict>
