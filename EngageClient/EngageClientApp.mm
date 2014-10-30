@@ -82,16 +82,30 @@ void EngageClientApp::drawStrings(Scene* scene, NSString *data, float x, float y
     
     
     int idx = 0;
+    int firstWidth = -1;
     for(id str in statuses) {
         NSString *strData = str;
         SceneLabel *status = new SceneLabel([strData UTF8String], size);
+        int width = status->getTextWidthForString([strData UTF8String]);
+        float newX;
+        
+        if(firstWidth == -1) {
+            firstWidth = width;
+            newX = x;
+        } else {
+            newX = x - (firstWidth - width) / 2;
+        }
+        
         status->setColor(1, 1, 1, 1);
-        status->setPosition(x, y - step * idx);
+        status->setPosition(newX, y - step * idx);
+        status->setAnchorPoint(SceneLabel::defaultAnchor);
+        
+        
         //status->setWidth(status->getTextWidthForString([strData UTF8String]));
         
         textReferences.push_back(status);
         
-        scene->addChild(status);
+        scene->addEntity(status);
         idx++;
 
     }
@@ -128,13 +142,13 @@ void EngageClientApp::clean(Scene* scene) {
 void EngageClientApp::twitter(Scene* scene, float width, float height, NSDictionary* data) {
     SceneImage *background = new SceneImage("../Resources/twitter_fondo.png");
     background->Scale(width / background->getImageWidth(), height / background->getImageHeight());
-    scene->addChild(background);
+    scene->addEntity(background);
     
     /*
     SceneImage *twitterBackground = new SceneImage("../Resources/twitter.png");
     twitterBackground->Scale(0.5, 0.5);
     twitterBackground->Translate(-width / 4, height / 6);
-    scene->addChild(twitterBackground);
+    scene->addEntity(twitterBackground);
     */
     
     NSString *pictureUrl = [data objectForKey:@"picture_url"];
@@ -152,8 +166,8 @@ void EngageClientApp::twitter(Scene* scene, float width, float height, NSDiction
             
             twitterPicture->Scale(w,w);
             
-            twitterPicture->Translate(-400, 200);
-            scene->addChild(twitterPicture);
+            twitterPicture->Translate(-410, 200);
+            scene->addEntity(twitterPicture);
 
         }
         
@@ -161,7 +175,8 @@ void EngageClientApp::twitter(Scene* scene, float width, float height, NSDiction
         
         NSLog(@"%@", status);
         
-        drawStrings(scene, status, 300, 400, 40, 60, 40, 40);
+        
+        drawStrings(scene, status, 130, 400, 18, 70, 40, 68);
         
         
     } else {
@@ -170,25 +185,27 @@ void EngageClientApp::twitter(Scene* scene, float width, float height, NSDiction
         
         NSLog(@"%@", status);
         
-        drawStrings(scene, status, 0, 400, 60, 40, 40, 40);
+        
+        drawStrings(scene, status, 0, 400, 36, 70, 40, 68);
         
     }
     
     NSString *slugString = [data objectForKey:@"slug"];
     const char *slug = [[@"@" stringByAppendingString:slugString] UTF8String];
-    SceneLabel *slugLabel = new SceneLabel(slug, 28);
+    SceneLabel *slugLabel = new SceneLabel(slug, 50);
     slugLabel->setColor(1, 1, 1, 1);
-    slugLabel->Translate(-400, -110);
-    scene->addChild(slugLabel);
+    slugLabel->Translate(-410, -110);
+    scene->addEntity(slugLabel);
     
     slugString = [[@"~/.engage/resources" stringByExpandingTildeInPath]
                   stringByAppendingFormat:@"/%@.png", slugString];
     
     if([[NSFileManager defaultManager] fileExistsAtPath:slugString]) {
         user = new SceneImage([slugString UTF8String]);
-        user->Scale(0.8, 0.8);
-        user->Translate(-600, -110);
-        scene->addChild(user);
+        float s = 120 / user->getWidth();
+        user->Scale(s, s);
+        user->Translate(-640, -110);
+        scene->addEntity(user);
     }
     
     
@@ -200,42 +217,17 @@ void EngageClientApp::twitter(Scene* scene, float width, float height, NSDiction
 void EngageClientApp::instagram(Scene* scene, float width, float height, NSDictionary* data) {
     SceneImage *background = new SceneImage("../Resources/instagram_fondo.png");
     background->Scale(width / background->getImageWidth(), height / background->getImageHeight());
-    scene->addChild(background);
+    scene->addEntity(background);
     /*
     SceneImage *instagramPicture = new SceneImage("../Resources/instagram.png");
     instagramPicture->Scale(0.5, 0.5);
     instagramPicture->Translate(-width / 4 + 20, height / 14);
      
     
-    scene->addChild(instagramPicture);
+    scene->addEntity(instagramPicture);
      */
     
-    
-    
-    NSString *tags = @"";
-    
-    for(id tagEntity in [data objectForKey:@"instagram_tags"]) {
-        tags = [tags stringByAppendingFormat:@"#%@ ", [tagEntity objectForKey:@"tag"]];
-    }
-    
-    drawStrings(scene, tags, 180, 460, 40, 40, 4, 40);
-    
-    NSString *pictureUrl = [data objectForKey:@"standard_resolution"];
-    
-    
-    NSString *picture = [pictureUrl lastPathComponent];
-    picture = [picture stringByReplacingOccurrencesOfString:@".jpeg" withString:@".png"];
-    picture = [picture stringByReplacingOccurrencesOfString:@".jpg" withString:@".png"];
-    picture = [[@"~/.engage/resources" stringByExpandingTildeInPath]
-               stringByAppendingFormat:@"/%@", picture];
-    
-    if([[NSFileManager defaultManager] fileExistsAtPath:picture]) {
-        twitterPicture = new SceneImage([picture UTF8String]);
-        float size = 600.0f / twitterPicture->getImageWidth();
-        twitterPicture->Scale(size, size);
-        twitterPicture->Translate(-360, 180);
-        scene->addChild(twitterPicture);
-    }
+
     
     NSString *slugString;
     
@@ -248,9 +240,10 @@ void EngageClientApp::instagram(Scene* scene, float width, float height, NSDicti
     
     if([[NSFileManager defaultManager] fileExistsAtPath:slugString]) {
         user = new SceneImage([slugString UTF8String]);
-        user->Scale(0.5, 0.5);
-        user->Translate(60, -40);
-        scene->addChild(user);
+        float s = 120 / user->getWidth();
+        user->Scale(s, s);
+        user->Translate(70, -50);
+        scene->addEntity(user);
     }
     
     
@@ -267,8 +260,38 @@ void EngageClientApp::instagram(Scene* scene, float width, float height, NSDicti
         length = 8;
     }
         
-    slugLabel->Translate(120 + length * 15, -40);
-    scene->addChild(slugLabel);
+    slugLabel->Translate(120 + length * 14.6, -50);
+    scene->addEntity(slugLabel);
+    
+    NSString *tags = @"";
+    
+    for(id tagEntity in [data objectForKey:@"instagram_tags"]) {
+        tags = [tags stringByAppendingFormat:@"#%@ ", [tagEntity objectForKey:@"tag"]];
+    }
+    
+    
+    drawStrings(scene, tags, 170, 460, 18, 70, 10, 68);
+    
+    NSString *pictureUrl = [data objectForKey:@"standard_resolution"];
+    
+    
+    
+    
+    
+    
+    NSString *picture = [pictureUrl lastPathComponent];
+    picture = [picture stringByReplacingOccurrencesOfString:@".jpeg" withString:@".png"];
+    picture = [picture stringByReplacingOccurrencesOfString:@".jpg" withString:@".png"];
+    picture = [[@"~/.engage/resources" stringByExpandingTildeInPath]
+               stringByAppendingFormat:@"/%@", picture];
+    
+    if([[NSFileManager defaultManager] fileExistsAtPath:picture]) {
+        twitterPicture = new SceneImage([picture UTF8String]);
+        float size = 600.0f / twitterPicture->getImageWidth();
+        twitterPicture->Scale(size, size);
+        twitterPicture->Translate(-360, 180);
+        scene->addEntity(twitterPicture);
+    }
     
     
     
@@ -277,7 +300,7 @@ void EngageClientApp::instagram(Scene* scene, float width, float height, NSDicti
 void EngageClientApp::background(Scene* scene, float width, float height) {
     SceneImage *background = new SceneImage("../Resources/fondo_academy-summit2.png");
     background->Scale(width / background->getImageWidth(), height / background->getImageHeight());
-    scene->addChild(background);
+    scene->addEntity(background);
     
 }
 
@@ -293,22 +316,22 @@ void EngageClientApp::topbar(Scene* scene, float width, float height) {
     tbar->Translate(0, (height / 2) - (newHeight / 2));
     tbar->setColor(0, 0, 0, 1);
     
-    scene->addChild(tbar);
+    scene->addEntity(tbar);
     
     image = new SceneImage("../Resources/logo.png");
     image->Translate(- (width / 2) + image->getImageHeight() * 0.6, (height / 2) - (newHeight / 2));
     image->Scale(0.6, 0.6);
-    scene->addChild(image);
+    scene->addEntity(image);
     
     int fontSize = 40 * (height / 768);
     
     SceneLabel *participaLabel = new SceneLabel("Trabajo", fontSize);
     participaLabel->setPosition(1 * width / 20, height / 2 - fontSize *  3 / 2);
-    scene->addChild(participaLabel);
+    scene->addEntity(participaLabel);
     
     SceneLabel *boldLabel = new SceneLabel("sin Fronteras", fontSize, "Gill Sans Bold");
     boldLabel->setPosition(6 * width / 20, height / 2 - fontSize *  3 / 2);
-    scene->addChild(boldLabel);
+    scene->addEntity(boldLabel);
     
 }
 
@@ -321,21 +344,21 @@ void EngageClientApp::footer(Scene* scene, float width, float height) {
     float newHeight = image->getImageHeight() * (width / image->getImageWidth());
     image->Translate(0, - (height / 2) + (newHeight / 2));
     
-    scene->addChild(image);
+    scene->addEntity(image);
     
     int fontSize = 40 * (height / 768);
     
     SceneLabel *ciscoLabel = new SceneLabel("@CiscoMexico", fontSize);
     ciscoLabel->setPosition(- 7 * width / 20, - height / 2 + fontSize *  15 / 14);
-    scene->addChild(ciscoLabel);
+    scene->addEntity(ciscoLabel);
     
     SceneLabel *participaLabel = new SceneLabel("Participa", fontSize);
     participaLabel->setPosition(4 * width / 20, - height / 2 + fontSize *  15 / 14);
-    scene->addChild(participaLabel);
+    scene->addEntity(participaLabel);
     
     SceneLabel *boldLabel = new SceneLabel("#TSF14", fontSize, "Gill Sans Bold");
     boldLabel->setPosition(8 * width / 20, - height / 2 + fontSize *  15 / 14);
-    scene->addChild(boldLabel);
+    scene->addEntity(boldLabel);
 
 }
 

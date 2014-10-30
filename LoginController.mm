@@ -17,6 +17,8 @@
 
 @implementation LoginController
 
+bool started;
+
 @synthesize displayArrayController;
 @synthesize displayTable;
 
@@ -24,15 +26,16 @@
 {
     self = [super initWithWindow:window];
     if (self) {
-        // Initialization code here.
+        started = false;
     }
     return self;
 }
 
 -(IBAction)startApp:(id)sender;
 {
+    if(!started) {
     EngageAppDelegate *delegate = (EngageAppDelegate *)[NSApp delegate];
-    
+    started = true;
     
     NSArray * selected = [displayArrayController selectedObjects];
     
@@ -41,6 +44,7 @@
         NSString * strNumber = [selected objectForKey:@"displayId"];
         int screenIndex = [strNumber intValue];
         [delegate startVideo:screenIndex];
+    }
     }
 }
 
