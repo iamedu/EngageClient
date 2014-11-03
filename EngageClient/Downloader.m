@@ -118,7 +118,7 @@
     NSString *targetPath = [[homeDirectory stringByAppendingPathComponent:@".engage/resources"]
                             stringByAppendingPathComponent:self.filename];
 
-    
+    [manager removeItemAtPath:targetPath error:&error];
     [manager moveItemAtPath:originalPath toPath:targetPath error:&error];
     [manager removeItemAtPath:originalPath error:&error];
         

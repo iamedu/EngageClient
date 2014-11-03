@@ -53,21 +53,44 @@ void EngageClientApp::drawStrings(Scene* scene, NSString *data, float x, float y
     
     
     data = [data stringByReplacingOccurrencesOfString:@"\n" withString:@" "];
-    NSArray *array = [data componentsSeparatedByString:@" "];
+    NSArray *realArray = [data componentsSeparatedByString:@" "];
+    NSArray *array = [[NSArray alloc] init];
     NSArray *statuses = [[NSArray alloc] init];
     NSString *current = @"";
     
     int i = 0;
     
+    for(id part in realArray) {
+        NSString *newPart = [part stringByAppendingString:@" "];
+        
+        if([newPart length] > maxChars) {
+            int partNumber = (int)ceil(1.0f * [newPart length] / maxChars);
+            for(int i = 0; i < partNumber; i++) {
+                unsigned long last = maxChars;
+                int currentMax = (i + 1) * maxChars;
+
+                
+                if(currentMax > [newPart length]) {
+
+                    last = maxChars - (currentMax - [newPart length]);
+                }
+                
+                NSString *customPart = [newPart substringWithRange: NSMakeRange(i * maxChars, last)];
+                array = [array arrayByAddingObject:customPart];
+            }
+        } else {
+            array = [array arrayByAddingObject:newPart];
+        }
+        
+    }
+    
     for(id part in array) {
         NSString *proposed = [current stringByAppendingString:part];
         if([proposed length] <= maxChars) {
             current = proposed;
-            current = [current stringByAppendingString:@" "];
         } else {
             statuses = [statuses arrayByAddingObject:current];
             current = part;
-            current = [current stringByAppendingString:@" "];
             i++;
         }
         if(maxLines > 0 && i >= maxLines) {
@@ -176,7 +199,7 @@ void EngageClientApp::twitter(Scene* scene, float width, float height, NSDiction
         NSLog(@"%@", status);
         
         
-        drawStrings(scene, status, 130, 400, 18, 70, 40, 68);
+        drawStrings(scene, status, 260, 450, 18, 70, 40, 68);
         
         
     } else {
@@ -186,7 +209,7 @@ void EngageClientApp::twitter(Scene* scene, float width, float height, NSDiction
         NSLog(@"%@", status);
         
         
-        drawStrings(scene, status, 0, 400, 36, 70, 40, 68);
+        drawStrings(scene, status, -60, 380, 36, 70, 40, 68);
         
     }
     
@@ -194,7 +217,7 @@ void EngageClientApp::twitter(Scene* scene, float width, float height, NSDiction
     const char *slug = [[@"@" stringByAppendingString:slugString] UTF8String];
     SceneLabel *slugLabel = new SceneLabel(slug, 50);
     slugLabel->setColor(1, 1, 1, 1);
-    slugLabel->Translate(-410, -110);
+    slugLabel->Translate(-350, -110);
     scene->addEntity(slugLabel);
     
     slugString = [[@"~/.engage/resources" stringByExpandingTildeInPath]
@@ -260,7 +283,7 @@ void EngageClientApp::instagram(Scene* scene, float width, float height, NSDicti
         length = 8;
     }
         
-    slugLabel->Translate(120 + length * 14.6, -50);
+    slugLabel->Translate(120 + length * 14.8, -50);
     scene->addEntity(slugLabel);
     
     NSString *tags = @"";
@@ -270,7 +293,7 @@ void EngageClientApp::instagram(Scene* scene, float width, float height, NSDicti
     }
     
     
-    drawStrings(scene, tags, 170, 460, 18, 70, 10, 68);
+    drawStrings(scene, tags, 260, 460, 15, 70, 10, 68);
     
     NSString *pictureUrl = [data objectForKey:@"standard_resolution"];
     

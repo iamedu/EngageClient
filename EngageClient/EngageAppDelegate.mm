@@ -26,7 +26,7 @@
 -(void)startVideo:(int)screenIndex
 {
     app = new EngageClientApp(mainView, screenIndex);
-	timer = [NSTimer timerWithTimeInterval:(1.0f/60.0f)
+	timer = [NSTimer timerWithTimeInterval:(1/10.0f)
                                     target:self
                                   selector:@selector(animationTimer:)
                                   userInfo:nil
